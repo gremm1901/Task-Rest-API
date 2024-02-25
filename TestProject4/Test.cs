@@ -1,8 +1,10 @@
+//start test
 namespace TestProject4
 {
     public class Test
     {
         //3 задание
+        [Test]
         public void Test3()
         {
             var request = new Request(); 
@@ -12,35 +14,29 @@ namespace TestProject4
                 job = "dsfsd"
 
             });
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
 
-            var People = JsonSerializer.Deserialize<Reqres1>(resp.Content, options);
+            var People = JsonSerializer.Deserialize<Reqres1>(resp.Content);
             
             if (request.checkStatus(resp, 201))
             {
                 Console.WriteLine(People.id);
+                Assert.Pass();
             }
             else
             {
                 Console.WriteLine("код ответа не 201");
+                Assert.Fail();
             };
         }
         //2 задание
+        [Test]
         public void Test2()
         {
 
             var request = new Request();
             var resp = request.getRequest("https://reqres.in", "api/users?page=2");
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            var People = JsonSerializer.Deserialize<Reqres>(resp.Content, options);
+            var People = JsonSerializer.Deserialize<Reqres>(resp.Content);
             if (request.checkStatus(resp, 200))
             {
                 for (int i = 0; i < People.data.Capacity; i++)
@@ -48,24 +44,21 @@ namespace TestProject4
                     if (People.data[i].first_name == "George" && People.data[i].last_name == "Edwards")
                     {
                         Console.WriteLine(People.data[i].email);
+                        Assert.Pass();
                         break;
                     }
                 }
             }
-            else { Console.WriteLine("Запрос не корректен"); }
+            else { Console.WriteLine("Запрос не корректен"); Assert.Fail(); }
         }
         //Задание 1
+        [Test]
         public void Test1()
         {
             var request = new Request();
             var resp = request.getRequest("https://swapi.dev", "api/people/2/");
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            var People = JsonSerializer.Deserialize<StarWars>(resp.Content, options);
+            var People = JsonSerializer.Deserialize<StarWars>(resp.Content);
 
             if (People.films.Length != 0 && request.checkStatus(resp,200))
             {
@@ -73,7 +66,9 @@ namespace TestProject4
                 {
                     Console.WriteLine(People.films[i]);
                 }
-            }else { Console.WriteLine("чет не так"); }
+                Assert.Pass();
+            }
+            else { Console.WriteLine("чет не так"); Assert.Fail(); }
         }
     }
 }
