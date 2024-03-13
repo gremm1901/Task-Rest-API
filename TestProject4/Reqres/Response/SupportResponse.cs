@@ -1,6 +1,6 @@
 ﻿namespace TestProject4
 {
-    public class Support
+    public class SupportResponse
     {
         [JsonProperty("url")]
         public string Url { get; set; }

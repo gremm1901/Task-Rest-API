@@ -1,6 +1,6 @@
 ﻿namespace TestProject4
 {
-    public class CreatedClient
+    public class CreatedClientResponse
     {
         [JsonProperty("id")]
         public string Id { get; set; }

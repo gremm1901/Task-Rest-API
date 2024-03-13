@@ -1,4 +1,4 @@
-﻿public class Planet
+﻿public class PlanetResponse
 {
     [JsonProperty("name")]
     public string Name { get; set; }

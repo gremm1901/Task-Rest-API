@@ -1,6 +1,6 @@
 ﻿namespace TestProject4
 {
-    public class ResourceListData
+    public class ResourceListDataResponse
     {
         [JsonProperty("id")]
         public int Id { get; set; }

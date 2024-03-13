@@ -1,6 +1,6 @@
 ﻿namespace TestProject4
 {
-    public class ResourceList
+    public class BasicInformationResponse
     {
         [JsonProperty("page")]
         public int Page { get; set; }
@@ -15,7 +15,10 @@
         public int TotalPages { get; set; }
 
         [JsonProperty("data")]
-        public List<ResourceListData> Data { get; set; }
-    }
-}
+        public List<UserDataResponse> Data { get; set; }
 
+        [JsonProperty("support")]
+        public SupportResponse Support { get; set; }
+    }
+
+}

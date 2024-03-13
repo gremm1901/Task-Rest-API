@@ -1,4 +1,4 @@
-﻿public class People
+﻿public class PeopleResponse
 {
     [JsonProperty("name")]
     public string Name { get; set; }

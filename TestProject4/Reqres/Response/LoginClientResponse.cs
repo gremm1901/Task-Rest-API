@@ -1,10 +1,7 @@
 ﻿namespace TestProject4
 {
-    public class RegisterClient
+    public class LoginClientResponse
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
         [JsonProperty("token")]
         public string Token { get; set; }
     }
