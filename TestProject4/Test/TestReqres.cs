@@ -7,14 +7,18 @@ namespace TestProject4
         [Test]
         public void TestCreatedClient()
         {
-            var request = new ReqresClient("https://reqres.in");
-            var createClient = new CreateClient();
-            var resp = request.CreateClient(createClient.CreateClients("asd","fwewef"));
+            var client = new ReqresClient("https://reqres.in");
+            var createClientRequest = new CreateClientRequest
+            {
+                Job = "dsaf",
+                Name = "dasgsag"
+            };
 
-            var client = JsonConvert.DeserializeObject<CreatedClient>(resp.Content);
+            var resp = client.CreateClient(createClientRequest);
 
-            Console.WriteLine(client.Id);
-            request.checkStatus(resp, 201);
+            Console.WriteLine(resp.Data.Id);
+
+            client.checkStatus(resp, 201);
         }
         //2 задание
         [Test]

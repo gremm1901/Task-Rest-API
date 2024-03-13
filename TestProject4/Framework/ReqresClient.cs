@@ -8,37 +8,69 @@
             _client = new RestClient(url);
         }
 
-        public RestResponse CreateClient(object body)
+        /// <summary>
+        /// Создать нового клиента
+        /// </summary>
+        /// <param name="body">Тело запроса</param>
+        /// <returns></returns>
+        public RestResponse<CreatedClient> CreateClient(CreateClientRequest body)
         {
             var req = new RestRequest("api/users", Method.Post);
-            req.AddBody(body);
-            return _client.Execute(req);
+            req.AddJsonBody(body);
+            return _client.Execute<CreatedClient>(req);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="per_page"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public RestResponse GetClientPage(int page, int per_page = 0, int status = 200)
         {
             var req = new RestRequest($"api/users?page={page}&per_page={per_page}", Method.Get);
             return _client.Execute(req);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RestResponse PutUpdateClient(int id)
         {
             var req = new RestRequest($"api/users/{id}", Method.Put);
             return _client.Execute(req);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RestResponse PutchUpdateClient(int id)
         {
             var req = new RestRequest($"api/users/{id}", Method.Patch);
             return _client.Execute(req);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RestResponse DeleteClient(int id)
         {
             var req = new RestRequest($"api/users/{id}", Method.Delete);
             return _client.Execute(req);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RestResponse GetClientId(int id)
         {
             var req = new RestRequest($"api/users/{id}", Method.Get);
@@ -46,7 +78,11 @@
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
         public RestResponse CreateSessionClient(object body)
         {
             var req = new RestRequest("api/login", Method.Post);

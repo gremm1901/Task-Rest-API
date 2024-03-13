@@ -1,13 +1,11 @@
 ﻿namespace TestProject4
 {
-    public class CreateClient
+    public class CreateClientRequest
     {
-        public object CreateClients(string nameClient, string jobClient) {
-            return new
-            {
-                name = nameClient,
-                job = jobClient
-            };
-        }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("job")]
+        public string Job { get; set; }
     }
 }
