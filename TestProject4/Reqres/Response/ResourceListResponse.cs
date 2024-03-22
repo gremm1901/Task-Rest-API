@@ -1,4 +1,4 @@
-﻿namespace TestProject4
+﻿namespace AutotestAPI
 {
     public class ResourceListResponse
     {
@@ -21,4 +21,3 @@
         public SupportResponse Support { get; set; }
     }
 }
-
