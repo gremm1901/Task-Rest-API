@@ -87,7 +87,7 @@
         /// <returns></returns>
         public RestResponse<ResourseIdResponse> GetResourcePage(int id)
         {
-            var req = new RestRequest("api/{resource}" + $"{id}", Method.Get);
+            var req = new RestRequest("api/{resource}/" + $"{id}", Method.Get);
             return _client.Execute<ResourseIdResponse>(req);
         }
         /// <summary>
@@ -97,7 +97,7 @@
         /// <returns></returns>
         public RestResponse<UpdatedAtResponse> PutUpdateResourceList(int id)
         {
-            var req = new RestRequest("api/{resource}" + $"{id}", Method.Put);
+            var req = new RestRequest("api/{resource}/" + $"{id}", Method.Put);
             return _client.Execute<UpdatedAtResponse>(req);
         }
         /// <summary>
@@ -107,7 +107,7 @@
         /// <returns></returns>
         public RestResponse<UpdatedAtResponse> PutchUpdateResourceList(int id)
         {
-            var req = new RestRequest("api/{resource}" + $"{id}", Method.Patch);
+            var req = new RestRequest("api/{resource}/" + $"{id}", Method.Patch);
             return _client.Execute<UpdatedAtResponse>(req);
         }
         /// <summary>

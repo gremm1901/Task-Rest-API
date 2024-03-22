@@ -1,10 +1,10 @@
 ﻿static class CheckStatus
 {
     /// <summary>
-    /// 
+    /// Возвращает булевое значение при проверки статуса
     /// </summary>
-    /// <param name="requst"></param>
-    /// <param name="status"></param>
+    /// <param name="requst">Реквест</param>
+    /// <param name="status">Статуст который мы ожидаем</param>
     /// <returns></returns>
     public static bool CheckStatusBool(RestResponse requst, int status = 200)
     {
@@ -12,10 +12,10 @@
         return check;
     }
     /// <summary>
-    /// 
+    /// Заканчивает тест при проверке статуса
     /// </summary>
-    /// <param name="requst"></param>
-    /// <param name="status"></param>
+    /// <param name="requst">Реквест</param>
+    /// <param name="status">Статуст который мы ожидаем</param>
     public static void ChecksStatus(RestResponse requst, int status = 200)
     {
 

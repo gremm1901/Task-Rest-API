@@ -2,10 +2,10 @@
 {
     public class ResourseIdResponse
     {
-        [JsonProperty("data")]
+        [JsonPropertyName("data")]
         public ResourceListDataResponse Data { get; set; }
 
-        [JsonProperty("support")]
+        [JsonPropertyName("support")]
         public SupportResponse Support { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ErrorClientResponse
     {
-        [JsonProperty("error")]
+        [JsonPropertyName("error")]
         public string Error { get; set; }
     }
 }

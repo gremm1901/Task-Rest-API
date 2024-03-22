@@ -2,10 +2,10 @@
 {
     public class RegisterClientResponse
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("token")]
+        [JsonPropertyName("token")]
         public string Token { get; set; }
     }
 }

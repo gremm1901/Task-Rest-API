@@ -2,22 +2,22 @@
 {
     public class BasicInformationResponse
     {
-        [JsonProperty("page")]
+        [JsonPropertyName("page")]
         public int Page { get; set; }
 
-        [JsonProperty("per_page")]
+        [JsonPropertyName("per_page")]
         public int PerPage { get; set; }
 
-        [JsonProperty("total")]
+        [JsonPropertyName("total")]
         public int Total { get; set; }
 
-        [JsonProperty("total_pages")]
+        [JsonPropertyName("total_pages")]
         public int TotalPages { get; set; }
 
-        [JsonProperty("data")]
+        [JsonPropertyName("data")]
         public List<UserDataResponse> Data { get; set; }
 
-        [JsonProperty("support")]
+        [JsonPropertyName("support")]
         public SupportResponse Support { get; set; }
     }
 

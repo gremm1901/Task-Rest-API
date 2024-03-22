@@ -2,19 +2,19 @@
 {
     public class ResourceListDataResponse
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("year")]
+        [JsonPropertyName("year")]
         public int Year { get; set; }
 
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public string Color { get; set; }
 
-        [JsonProperty("pantone_value")]
+        [JsonPropertyName("pantone_value")]
         public string PantoneValue { get; set; }
     }
 }

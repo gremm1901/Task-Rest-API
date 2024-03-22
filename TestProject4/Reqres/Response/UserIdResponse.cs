@@ -2,10 +2,10 @@
 {
     public class UserIdResponse
     {
-        [JsonProperty("data")]
+        [JsonPropertyName("data")]
         public UserDataResponse Data { get; set; }
 
-        [JsonProperty("support")]
+        [JsonPropertyName("support")]
         public SupportResponse Support { get; set; }
     }
 }

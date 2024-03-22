@@ -2,7 +2,7 @@
 {
     public class UpdatedAtResponse
     {
-        [JsonProperty("updatedAt")]
+        [JsonPropertyName("updatedAt")]
         public string UpdatedAt { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestProject4
+﻿namespace TestProject4
 {
     public static class GenerationData
     {
@@ -38,6 +36,27 @@ namespace TestProject4
                 str = str + chars[random.Next(chars.Length)];
             }
             return str;
+        }
+        /// <summary>
+        /// Генерация почты
+        /// </summary>
+        /// <param name="length">примерная длина строки</param>
+        /// <returns></returns>
+        public static string GenerationEmail(int length = 21)
+        {
+            Random random = new Random();
+            string str = "";
+            string strDomen = "";
+            const string chars = "qwertyuiopasdfghjklzxcvbnm";
+            for (int i = 0; i < (length-3)/2; i++)
+            {
+                str = str + chars[random.Next(chars.Length)];
+            }
+            for (int i = 0; i < (length - 3) / 2; i++)
+            {
+                strDomen = strDomen + chars[random.Next(chars.Length)];
+            }
+            return str + "@" + strDomen+".ru";
         }
         /// <summary>
         /// Генерация случайного положительного числа, длиною 9 символов

@@ -2,7 +2,7 @@
 {
     public class LoginClientResponse
     {
-        [JsonProperty("token")]
+        [JsonPropertyName("token")]
         public string Token { get; set; }
     }
 }

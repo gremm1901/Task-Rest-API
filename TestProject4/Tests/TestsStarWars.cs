@@ -3,14 +3,14 @@ namespace TestProject4
 {
     public class TestsStarWars
     {
-        //Задание 1
+        //Вызов метода GetPeoplePage
         [Test]
         public void TestFilmsPeopleStarWars()
         {
             var request = new StarWarsClient("https://swapi.dev");
             var resp = request.GetPeoplePage(2);
 
-            if (resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
+            if (resp.Data != null && resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
             {
                 for (int i = 0; i < resp.Data.Films.Length; i++)
                 {
@@ -19,13 +19,13 @@ namespace TestProject4
                 CheckStatus.ChecksStatus(resp);
             }
         }
-        //Задание 1
+        //Вызов метода GetStarshipsPage
         [Test]
         public void TestFilmsStarshipsStarWars()
         {
             var request = new StarWarsClient("https://swapi.dev");
             var resp = request.GetStarshipsPage(2);
-            if (resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
+            if (resp.Data != null && resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
             {
                 for (int i = 0; i < resp.Data.Films.Length; i++)
                 {
@@ -34,13 +34,13 @@ namespace TestProject4
                 CheckStatus.ChecksStatus(resp);
             }
         }
-        //Задание 1
+        //Вызов метода GetPlanetPage
         [Test]
         public void TestFilmsPlanetStarWars()
         {
             var request = new StarWarsClient("https://swapi.dev");
             var resp = request.GetPlanetPage(2);
-            if (resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
+            if (resp.Data != null && resp.Data.Films.Length != 0 && CheckStatus.CheckStatusBool(resp))
             {
                 for (int i = 0; i < resp.Data.Films.Length; i++)
                 {
