@@ -2,6 +2,9 @@
 {
     public static class GenerationData
     {
+        static readonly string charsNumbers = "1234567890";
+        static readonly string charsSymbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm";
+        static readonly string charsSpecial = "!@#$%^&*()_+=|/?.,m";
         /// <summary>
         /// Генерация строки без спец символов
         /// </summary>
@@ -9,15 +12,14 @@
         /// <returns></returns>
         public static string GenerationString(int length)
         {
-            Random random = new Random();
             string str = "";
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm";
+            Random random = new Random();
             //return new string(Enumerable.Repeat(chars, length)
             //    .Select(s => s[random.Next(s.Length)]).ToArray()); нашел в инете и не понял как оно работает поэтому сохранил 
 
             for (int i = 0; i < length; i++)
             {
-                str = str + chars[random.Next(chars.Length)];
+                str = str + charsSymbols[random.Next(charsSymbols.Length)];
             }
             return str;
         }
@@ -30,10 +32,9 @@
         {
             Random random = new Random();
             string str = "";
-            const string chars = "!@#$%^&*()_+=|/?.,m";
             for (int i = 0; i < length; i++)
             {
-                str = str + chars[random.Next(chars.Length)];
+                str = str + charsSpecial[random.Next(charsSpecial.Length)];
             }
             return str;
         }
@@ -47,14 +48,13 @@
             Random random = new Random();
             string str = "";
             string strDomen = "";
-            const string chars = "qwertyuiopasdfghjklzxcvbnm";
             for (int i = 0; i < (length-3)/2; i++)
             {
-                str = str + chars[random.Next(chars.Length)];
+                str = str + charsSymbols[random.Next(charsSymbols.Length)];
             }
             for (int i = 0; i < (length - 3) / 2; i++)
             {
-                strDomen = strDomen + chars[random.Next(chars.Length)];
+                strDomen = strDomen + charsSymbols[random.Next(charsSymbols.Length)];
             }
             return str + "@" + strDomen+".ru";
         }
@@ -67,10 +67,9 @@
         {
             Random random = new Random();
             string str = "";
-            const string chars = "1234567890";
             for (int i = 0; i < length; i++)
             {
-                str = str + chars[random.Next(chars.Length)];
+                str = str + charsNumbers[random.Next(charsNumbers.Length)];
             }
             return Convert.ToInt32(str);
         }
@@ -83,10 +82,9 @@
         {
             Random random = new Random();
             string str = "";
-            const string chars = "1234567890";
             for (int i = 0; i < length; i++) 
             {
-                str = str + chars[random.Next(chars.Length)];
+                str = str + charsNumbers[random.Next(charsNumbers.Length)];
             }
             return Convert.ToInt64(str);
         }

@@ -10,8 +10,7 @@
         /// <returns></returns>
         public static bool CheckStatusBool(RestResponse requst, int status = 200)
         {
-            bool check = (int)requst.StatusCode == status ? true : false;
-            return check;
+            return (int)requst.StatusCode == status;
         }
         /// <summary>
         /// Заканчивает тест при проверке статуса
