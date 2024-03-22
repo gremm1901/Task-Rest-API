@@ -1,5 +1,4 @@
-﻿//start test
-namespace TestProject4
+﻿namespace AutotestAPI
 {
     public class TestsReqres
     {

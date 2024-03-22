@@ -1,4 +1,4 @@
-﻿namespace TestProject4
+﻿namespace AutotestAPI
 {
     public class ReqresClient
     {
