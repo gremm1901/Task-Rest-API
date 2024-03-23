@@ -3,45 +3,45 @@
     public class FilmsResponse
     {
         [JsonPropertyName("title")]
-        public string title { get; set; }
+        public string Title { get; set; }
 
         [JsonPropertyName("episode_id")]
-        public int episode_id { get; set; }
+        public int EpisodeId { get; set; }
 
         [JsonPropertyName("opening_crawl")]
-        public string opening_crawl { get; set; }
+        public string OpeningCrawl { get; set; }
 
         [JsonPropertyName("director")]
-        public string director { get; set; }
+        public string Director { get; set; }
 
         [JsonPropertyName("producer")]
-        public string producer { get; set; }
+        public string Producer { get; set; }
 
         [JsonPropertyName("release_date")]
-        public string release_date { get; set; }
+        public string ReleaseDate { get; set; }
 
         [JsonPropertyName("characters")]
-        public List<string> characters { get; set; }
+        public List<string> Characters { get; set; }
 
         [JsonPropertyName("planets")]
-        public List<string> planets { get; set; }
+        public List<string> Planets { get; set; }
 
         [JsonPropertyName("starships")]
-        public List<string> starships { get; set; }
+        public List<string> Starships { get; set; }
 
         [JsonPropertyName("vehicles")]
-        public List<string> vehicles { get; set; }
+        public List<string> Vehicles { get; set; }
 
         [JsonPropertyName("species")]
-        public List<string> species { get; set; }
+        public List<string> Species { get; set; }
 
         [JsonPropertyName("created")]
-        public DateTime created { get; set; }
+        public DateTime Created { get; set; }
 
         [JsonPropertyName("edited")]
-        public DateTime edited { get; set; }
+        public DateTime Edited { get; set; }
 
         [JsonPropertyName("url")]
-        public string url { get; set; }
+        public string Url { get; set; }
     }
 }

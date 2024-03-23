@@ -3,51 +3,51 @@
     public class VehiclesResponse
     {
         [JsonPropertyName("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("model")]
-        public string model { get; set; }
+        public string Model { get; set; }
 
         [JsonPropertyName("manufacturer")]
-        public string manufacturer { get; set; }
+        public string Manufacturer { get; set; }
 
         [JsonPropertyName("cost_in_credits")]
-        public string cost_in_credits { get; set; }
+        public string CostInCredits { get; set; }
 
         [JsonPropertyName("length")]
-        public string length { get; set; }
+        public string Length { get; set; }
 
         [JsonPropertyName("max_atmosphering_speed")]
-        public string max_atmosphering_speed { get; set; }
+        public string MaxAtmospheringSpeed { get; set; }
 
         [JsonPropertyName("crew")]
-        public string crew { get; set; }
+        public string Crew { get; set; }
 
         [JsonPropertyName("passengers")]
-        public string passengers { get; set; }
+        public string Passengers { get; set; }
 
         [JsonPropertyName("cargo_capacity")]
-        public string cargo_capacity { get; set; }
+        public string CargoCapacity { get; set; }
 
         [JsonPropertyName("consumables")]
-        public string consumables { get; set; }
+        public string Consumables { get; set; }
 
         [JsonPropertyName("vehicle_class")]
-        public string vehicle_class { get; set; }
+        public string VehicleClass { get; set; }
 
         [JsonPropertyName("pilots")]
-        public List<string> pilots { get; set; }
+        public List<string> Pilots { get; set; }
 
         [JsonPropertyName("films")]
-        public List<string> films { get; set; }
+        public List<string> Films { get; set; }
 
         [JsonPropertyName("created")]
-        public DateTime created { get; set; }
+        public DateTime Created { get; set; }
 
         [JsonPropertyName("edited")]
-        public DateTime edited { get; set; }
+        public DateTime Edited { get; set; }
 
         [JsonPropertyName("url")]
-        public string url { get; set; }
+        public string Url { get; set; }
     }
 }

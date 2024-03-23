@@ -3,15 +3,15 @@
     public class AllFilmsResponse
     {
         [JsonPropertyName("count")]
-        public int count { get; set; }
+        public int Count { get; set; }
 
         [JsonPropertyName("next")]
-        public object next { get; set; }
+        public object Next { get; set; }
 
         [JsonPropertyName("previous")]
-        public object previous { get; set; }
+        public object Previous { get; set; }
 
         [JsonPropertyName("results")]
-        public List<FilmsResponse> results { get; set; }
+        public List<FilmsResponse> Results { get; set; }
     }
 }

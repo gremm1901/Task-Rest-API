@@ -3,15 +3,15 @@
     public class AllSpeciesResponse
     {
         [JsonPropertyName("count")]
-        public int count { get; set; }
+        public int Count { get; set; }
 
         [JsonPropertyName("next")]
-        public string next { get; set; }
+        public string Next { get; set; }
 
         [JsonPropertyName("previous")]
-        public object previous { get; set; }
+        public object Previous { get; set; }
 
         [JsonPropertyName("results")]
-        public List<SpeciesResponse> results { get; set; }
+        public List<SpeciesResponse> Results { get; set; }
     }
 }

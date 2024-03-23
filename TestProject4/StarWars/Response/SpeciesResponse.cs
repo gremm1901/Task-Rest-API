@@ -3,48 +3,48 @@
     public class SpeciesResponse
     {
         [JsonPropertyName("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [JsonPropertyName("classification")]
-        public string classification { get; set; }
+        public string Classification { get; set; }
 
         [JsonPropertyName("designation")]
-        public string designation { get; set; }
+        public string Designation { get; set; }
 
         [JsonPropertyName("average_height")]
-        public string average_height { get; set; }
+        public string AverageHeight { get; set; }
 
         [JsonPropertyName("skin_colors")]
-        public string skin_colors { get; set; }
+        public string SkinColors { get; set; }
 
         [JsonPropertyName("hair_colors")]
-        public string hair_colors { get; set; }
+        public string HairColors { get; set; }
 
         [JsonPropertyName("eye_colors")]
-        public string eye_colors { get; set; }
+        public string EyeColors { get; set; }
 
         [JsonPropertyName("average_lifespan")]
-        public string average_lifespan { get; set; }
+        public string AverageLifespan { get; set; }
 
         [JsonPropertyName("homeworld")]
-        public string homeworld { get; set; }
+        public string Homeworld { get; set; }
 
         [JsonPropertyName("language")]
-        public string language { get; set; }
+        public string Language { get; set; }
 
         [JsonPropertyName("people")]
-        public List<string> people { get; set; }
+        public List<string> People { get; set; }
 
         [JsonPropertyName("films")]
-        public List<string> films { get; set; }
+        public List<string> Films { get; set; }
 
         [JsonPropertyName("created")]
-        public DateTime created { get; set; }
+        public DateTime Created { get; set; }
 
         [JsonPropertyName("edited")]
-        public DateTime edited { get; set; }
+        public DateTime Edited { get; set; }
 
         [JsonPropertyName("url")]
-        public string url { get; set; }
+        public string Url { get; set; }
     }
 }
