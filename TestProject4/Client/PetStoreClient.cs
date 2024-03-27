@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    internal class PetStoreClient
+    public class PetStoreClient
     {
         RestClient _client;
         public PetStoreClient(string url)
@@ -12,60 +12,60 @@
         /// </summary>
         /// <param name="body">Данные клиента</param>
         /// <returns></returns>
-        public RestResponse<AnswerResponse> CreateWithListUser(IEnumerable<CreateUserRequest> body) {
+        public RestResponse<AnswerPSResponse> CreateWithListUserPS(IEnumerable<CreateUserPSRequest> body) {
             var req = new RestRequest("v2/user/createWithList", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<AnswerResponse>(req);
+            return _client.Execute<AnswerPSResponse>(req);
         }
         /// <summary>
         /// Создание клиекнта
         /// </summary>
         /// <param name="body">Данные клиента</param>
         /// <returns></returns>
-        public RestResponse<AnswerResponse> CreateUser(CreateUserRequest body)
+        public RestResponse<AnswerPSResponse> CreateUserPS(CreateUserPSRequest body)
         {
             var req = new RestRequest("v2/user", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<AnswerResponse>(req);
+            return _client.Execute<AnswerPSResponse>(req);
         }
         /// <summary>
         /// Найти клиента по его username
         /// </summary>
         /// <param name="username">username клиента</param>
         /// <returns></returns>
-        public RestResponse<UserResponse> GetUserPetStore(string username) {
+        public RestResponse<UserPSResponse> GetUserPS(string username) {
             var req = new RestRequest($"v2/user/{username}", Method.Get);
-            return _client.Execute<UserResponse>(req);
+            return _client.Execute<UserPSResponse>(req);
         }
         /// <summary>
         /// Найти клиента по его username
         /// </summary>
         /// <param name="username">username клиента</param>
         /// <returns></returns>
-        public RestResponse<AnswerResponse> DeleteUserPetStore(string username)
+        public RestResponse<AnswerPSResponse> DeleteUserPS(string username)
         {
             var req = new RestRequest($"v2/user/{username}", Method.Delete);
-            return _client.Execute<AnswerResponse>(req);
+            return _client.Execute<AnswerPSResponse>(req);
         }
         /// <summary>
         /// Вернуть список питомцев по их статусу "available","pending","sold"
         /// </summary>
         /// <param name="status">статусу "available","pending","sold"</param>
         /// <returns></returns>
-        public RestResponse<List<PetResponse>> GetPetFindByStatus(string status)
+        public RestResponse<List<PetPSResponse>> GetPetFindByStatusPS(string status)
         {
                 var req = new RestRequest($"/v2/pet/findByStatus?status={status}", Method.Get);
-                return _client.Execute<List<PetResponse>>(req);
+                return _client.Execute<List<PetPSResponse>>(req);
         }
         /// <summary>
         /// Получить питомца по его id
         /// </summary>
         /// <param name="id">id питомца</param>
         /// <returns></returns>
-        public RestResponse<PetResponse> GetPetId(long id) 
+        public RestResponse<PetPSResponse> GetPetIdPS(long id) 
         {
             var req = new RestRequest($"v2/pet/{id}", Method.Get);
-            return _client.Execute<PetResponse>(req);
+            return _client.Execute<PetPSResponse>(req);
         }
     }
 }

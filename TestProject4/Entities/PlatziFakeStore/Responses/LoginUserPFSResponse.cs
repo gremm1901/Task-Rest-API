@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class LoginUserResponse:ErrorLoginUserResponse
+    public class LoginUserPFSResponse:ErrorLoginUserPFSResponse
     {
         [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }

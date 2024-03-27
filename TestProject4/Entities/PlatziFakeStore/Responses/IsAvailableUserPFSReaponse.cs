@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class IsAvailableUserReaponse
+    public class IsAvailableUserPFSReaponse
     {
         [JsonPropertyName("isAvailable")]
         public bool IsAvailable { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class AllDataProductsResponse : ErrorPlatziFakeStoreRespose
+    public class AllDataProductsPFSResponse : ErrorPFSRespose
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -24,6 +24,6 @@
         public DateTime UpdatedAt { get; set; }
 
         [JsonPropertyName("category")]
-        public CategoriesResponse Category { get; set; }
+        public CategoriesPFSResponse Category { get; set; }
     }
 }

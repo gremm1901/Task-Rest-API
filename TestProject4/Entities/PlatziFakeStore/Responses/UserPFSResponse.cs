@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class CreateUserResponse:AnswerPlatziFakeStoreResponse
+    public class UserPFSResponse : AnswerPFSResponse
     {
         [JsonPropertyName("email")]
         public string Email { get; set; }

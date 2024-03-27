@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class CategoriesResponse
+    public class CategoriesPFSResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

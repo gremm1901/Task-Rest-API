@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class CategoryPetResponse
+    public class TagPetPSResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

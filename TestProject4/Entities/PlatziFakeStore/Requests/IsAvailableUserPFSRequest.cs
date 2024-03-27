@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class IsAvailableUserRequest
+    public class IsAvailableUserPFSRequest
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("email")]

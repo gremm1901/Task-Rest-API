@@ -12,9 +12,9 @@ namespace AutotestAPI
         public void TestDeleteUserPetStore()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var createUserRequest = new List<CreateUserRequest>
+            var createUserRequest = new List<CreateUserPSRequest>
             {
-                new CreateUserRequest
+                new CreateUserPSRequest
                 {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -25,7 +25,7 @@ namespace AutotestAPI
                 Phone = GenerationData.GenerationMobilePhone(),
                 UserStatus = 0
                 },
-                new CreateUserRequest
+                new CreateUserPSRequest
                 {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -37,10 +37,10 @@ namespace AutotestAPI
                 UserStatus = 0
                 }
             };
-            client.CreateWithListUser(createUserRequest);
-            client.GetUserPetStore(createUserRequest[0].Username);
-            client.DeleteUserPetStore(createUserRequest[0].Username);
-            var respFinel = client.GetUserPetStore(createUserRequest[0].Username);
+            client.CreateWithListUserPS(createUserRequest);
+            client.GetUserPS(createUserRequest[0].Username);
+            client.DeleteUserPS(createUserRequest[0].Username);
+            var respFinel = client.GetUserPS(createUserRequest[0].Username);
             AssertionHelper.ChecksStatus(respFinel, 404);
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace AutotestAPI
         public void TestGetUserPetStore()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var createUserRequest = new CreateUserRequest
+            var createUserRequest = new CreateUserPSRequest
             {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -62,8 +62,8 @@ namespace AutotestAPI
                 Phone = GenerationData.GenerationMobilePhone(),
                 UserStatus = 0
             };
-            client.CreateUser(createUserRequest);
-            var getResp = client.GetUserPetStore(createUserRequest.Username);
+            client.CreateUserPS(createUserRequest);
+            var getResp = client.GetUserPS(createUserRequest.Username);
             AssertionHelper.CheckParametrUserPetStore(createUserRequest, getResp.Data);
             AssertionHelper.ChecksStatus(getResp, 200);
         }
@@ -75,10 +75,10 @@ namespace AutotestAPI
         public void TestGetPetParametr()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var resp = client.GetPetFindByStatus("available");
+            var resp = client.GetPetFindByStatusPS("available");
             AssertionHelper.ChecksStatus(resp);
             var idPet = resp.Data[0].Id;
-            var respPetId = client.GetPetId(idPet);
+            var respPetId = client.GetPetIdPS(idPet);
             AssertionHelper.ChecksStatus(respPetId);
             Assert.IsTrue(respPetId.Data.Id == idPet, $"Id не совпадает");
             Assert.IsTrue(respPetId.Data.Status == "available", $"Status не совпадает");
@@ -91,7 +91,7 @@ namespace AutotestAPI
         public void TestGetPetByAbsentId()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var resp = client.GetPetId(GenerationData.GenerationLong(18));
+            var resp = client.GetPetIdPS(GenerationData.GenerationLong(18));
             AssertionHelper.ChecksStatus(resp, 404);
             AssertionHelper.CheckErrorMesseg(resp.Data,1, "error", "Pet not found");
         }

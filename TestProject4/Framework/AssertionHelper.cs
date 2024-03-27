@@ -47,7 +47,7 @@
         /// </summary>
         /// <param name="requst">Изначальные данные клиента</param>
         /// <param name="client">С чем сравнивать</param>
-        public static void CheckParametrUserPetStore(CreateUserRequest requst, UserResponse client)
+        public static void CheckParametrUserPS(CreateUserPSRequest requst, UserPSResponse client)
         {
             Assert.IsTrue(requst.Id == client.Id, $"Id не совпадает,в ответе {requst.Id} вместо {client.Id}");
             Assert.IsTrue(requst.Email == client.Email, $"Email не совпадает,в ответе {requst.Email} вместо {client.Email}");
@@ -66,7 +66,7 @@
         /// <param name="code">Ожидаемые данные из поля code</param>
         /// <param name="type">Ожидаемые данные из поля type</param>
         /// <param name="message">Ожидаемые данные из поля message</param>
-        public static void CheckErrorMesseg(AnswerResponse requst, int code, string type, string message)
+        public static void CheckErrorMesseg(AnswerPSResponse requst, int code, string type, string message)
         {
             Assert.IsTrue(requst.Code == code, $"Code не совпадает,в ответе {requst.Code} вместо {code}");
             Assert.IsTrue(requst.Type == type, $"Type не совпадает,в ответе {requst.Type} вместо {type}");
@@ -77,7 +77,7 @@
         /// </summary>
         /// <param name="requst">Изначальные данные категории</param>
         /// <param name="client">С чем сравнивать</param>
-        public static void CheckCategorie(CategoriesResponse requst, CategoriesResponse client)
+        public static void CheckCategoriePFS(CategoriesPFSResponse requst, CategoriesPFSResponse client)
         {
             Assert.IsTrue(requst.Name == client.Name, $"Name не совпадает,в ответе {requst.Name} вместо {client.Name}");
             Assert.IsTrue(requst.Id == client.Id, $"Id не совпадает,в ответе {requst.Id} вместо {client.Id}");

@@ -10,7 +10,7 @@
         public void TestDeleteUser() 
         {
             var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
-            var createUserRequest = new CreateUserPlatziFakeStoreRequest
+            var createUserRequest = new CreateUserPFSRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
                 Email = GenerationData.GenerationEmail(),
@@ -18,11 +18,11 @@
                 Password = GenerationData.GenerationString(13),
                 Role = GenerationData.GenerationRole(0),
             };
-            var resp = client.CreateUsers(createUserRequest);
-            var respUserId = client.GetUsersId(resp.Data.Id);
+            var resp = client.CreateUsersPFS(createUserRequest);
+            var respUserId = client.GetUsersIdPFS(resp.Data.Id);
             AssertionHelper.CheckParametrUserPFS(resp.Data, respUserId.Data);
-            client.DeleteUsersId(respUserId.Data.Id);
-            var respDeleteId = client.GetUsersId(respUserId.Data.Id);
+            client.DeleteUsersIdPZS(respUserId.Data.Id);
+            var respDeleteId = client.GetUsersIdPFS(respUserId.Data.Id);
             AssertionHelper.ChecksStatus(respDeleteId, 400);
         }
         /// <summary>
@@ -33,26 +33,26 @@
         public void DeleteCategories()
         {
             var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
-            var createCategoriesRequest = new CreateCategoriesRequest
+            var createCategoriesRequest = new CreateCategoriesPFSRequest
             {
                 Image = GenerationData.GenerationUrl(13),
                 Name = GenerationData.GenerationString(13),
             };
-            var putCategoriesRequest = new CreateCategoriesRequest
+            var putCategoriesRequest = new CreateCategoriesPFSRequest
             {
                 Name = GenerationData.GenerationString(10)
             };
 
-            var resp = client.CreateCategories(createCategoriesRequest);
-            var respCategoriesId = client.GetCategoriesId(resp.Data.Id);
+            var resp = client.CreateCategoriesPFS(createCategoriesRequest);
+            var respCategoriesId = client.GetCategoriesIdPFS(resp.Data.Id);
             AssertionHelper.ChecksStatus(respCategoriesId);
-            var respPutCategory = client.PutCategoriesId(putCategoriesRequest, respCategoriesId.Data.Id);
+            var respPutCategory = client.PutCategoriesIdPFS(putCategoriesRequest, respCategoriesId.Data.Id);
             AssertionHelper.ChecksStatus(respPutCategory);
-            var respPutCategoriesId = client.GetCategoriesId(respPutCategory.Data.Id);
-            AssertionHelper.CheckCategorie(respPutCategory.Data, respPutCategoriesId.Data);
-            var respDeleteCategorie = client.DeleteCategoriesId(respCategoriesId.Data.Id);
+            var respPutCategoriesId = client.GetCategoriesIdPFS(respPutCategory.Data.Id);
+            AssertionHelper.CheckCategoriePFS(respPutCategory.Data, respPutCategoriesId.Data);
+            var respDeleteCategorie = client.DeleteCategoriesIdPFS(respCategoriesId.Data.Id);
             AssertionHelper.ChecksStatus(respDeleteCategorie);
-            var respDeleteCategoriesId = client.GetCategoriesId(respPutCategory.Data.Id);
+            var respDeleteCategoriesId = client.GetCategoriesIdPFS(respPutCategory.Data.Id);
             AssertionHelper.ChecksStatus(respDeleteCategoriesId, 400);
 
         }
@@ -64,7 +64,7 @@
         public void LoginUser()
         {
             var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
-            var createUserRequest = new CreateUserPlatziFakeStoreRequest
+            var createUserRequest = new CreateUserPFSRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
                 Email = GenerationData.GenerationEmail(),
@@ -72,13 +72,13 @@
                 Password = GenerationData.GenerationString(13),
                 Role = GenerationData.GenerationRole(0),
             };
-            var resp = client.CreateUsers(createUserRequest);
-            var loginResp = client.LoginUser(new LoginUserRequest
+            var resp = client.CreateUsersPFS(createUserRequest);
+            var loginResp = client.LoginUserPFS(new LoginUserPFSRequest
             {
                 Email = createUserRequest.Email,
                 Password = createUserRequest.Password
             });
-            var userResp = client.GetProfileUser(loginResp.Data.AccessToken);
+            var userResp = client.GetProfileUserPFS(loginResp.Data.AccessToken);
             AssertionHelper.ChecksStatus(userResp);
             AssertionHelper.CheckParametrUserPFS(resp.Data, userResp.Data);
         }

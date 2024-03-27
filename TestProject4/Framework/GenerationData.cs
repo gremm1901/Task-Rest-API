@@ -58,7 +58,7 @@
             }
             for (int i = 0; i < (length - 3) / 2; i++)
             {
-                strDomen = strDomen + charsSymbols[random.Next(charsSymbols.Length)];
+                strDomen += charsSymbols[random.Next(charsSymbols.Length)];
             }
             return str + "@" + strDomen+".ru";
         }

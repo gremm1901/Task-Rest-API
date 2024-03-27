@@ -8,7 +8,7 @@ namespace AutotestAPI
         public void TestGetPeoplePage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetPeoplePage(2);
+            var resp = client.GetPeoplePageSW(2);
             AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllPeoplePage
@@ -16,7 +16,7 @@ namespace AutotestAPI
         public void TestAllPeoplePage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllPeoplePage();
+            var resp = client.GetAllPeoplePageSW();
             AssertionHelper.ChecksStatus(resp);
         }
 
@@ -25,7 +25,7 @@ namespace AutotestAPI
         public void TestGetFilmsPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetFilmsPage(2);
+            var resp = client.GetFilmsPageSW(2);
             AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllFilmsPage
@@ -33,7 +33,7 @@ namespace AutotestAPI
         public void TestAllFilmsPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllFilmsPage();
+            var resp = client.GetAllFilmsPageSW();
             AssertionHelper.ChecksStatus(resp);
         }
 
@@ -42,7 +42,7 @@ namespace AutotestAPI
         public void TestVehiclesPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetVehiclesPage(2);
+            var resp = client.GetVehiclesPageSW(2);
             AssertionHelper.ChecksStatus(resp, 404);
         }
         //ֲûחמג לועמהא GetAllVehiclesPage
@@ -50,7 +50,7 @@ namespace AutotestAPI
         public void TestAllVehiclesPag()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllVehiclesPage();
+            var resp = client.GetAllVehiclesPageSW();
             AssertionHelper.ChecksStatus(resp);
         }
 
@@ -59,7 +59,7 @@ namespace AutotestAPI
         public void TestStarshipsPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetStarshipsPage(2);
+            var resp = client.GetStarshipsPageSW(2);
             AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllGetStarshipsPage
@@ -67,7 +67,7 @@ namespace AutotestAPI
         public void TestAllStarshipsPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllStarshipsPage();
+            var resp = client.GetAllStarshipsPageSW();
             AssertionHelper.ChecksStatus(resp);
         }
 
@@ -76,7 +76,7 @@ namespace AutotestAPI
         public void TestPlanetPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetPlanetPage(2);
+            var resp = client.GetPlanetPageSW(2);
             AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllGetPlanetPage
@@ -84,7 +84,7 @@ namespace AutotestAPI
         public void TestAllPlanetPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllPlanetPage();
+            var resp = client.GetAllPlanetPageSW();
             AssertionHelper.ChecksStatus(resp);
         }
 
@@ -93,7 +93,7 @@ namespace AutotestAPI
         public void TestSpeciesPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetSpeciesPage(2);
+            var resp = client.GetSpeciesPageSW(2);
             AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא GetAllSpeciesPage
@@ -101,7 +101,7 @@ namespace AutotestAPI
         public void TestAllSpeciesPage()
         {
             var client = new StarWarsClient("https://swapi.dev");
-            var resp = client.GetAllSpeciesPage();
+            var resp = client.GetAllSpeciesPageSW();
             AssertionHelper.ChecksStatus(resp);
         }
     }

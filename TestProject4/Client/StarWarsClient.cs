@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="id">Номер героя</param>
         /// <returns></returns>
-        public RestResponse<PeopleResponse> GetPeoplePage(int id)
+        public RestResponse<PeopleResponse> GetPeoplePageSW(int id)
         {
             var req = new RestRequest($"api/people/{id}/", Method.Get);
             return _client.Execute<PeopleResponse>(req);
@@ -21,7 +21,7 @@
         /// Получить список всех героев
         /// </summary>
         /// <returns></returns>
-        public RestResponse<AllPeopleResponse> GetAllPeoplePage()
+        public RestResponse<AllPeopleResponse> GetAllPeoplePageSW()
         {
             var req = new RestRequest("api/people/", Method.Get);
             return _client.Execute<AllPeopleResponse>(req);
@@ -32,7 +32,7 @@
         /// </summary>
         /// <param name="id">номер планеты</param>
         /// <returns></returns>
-        public RestResponse<PlanetResponse> GetPlanetPage(int id)
+        public RestResponse<PlanetResponse> GetPlanetPageSW(int id)
         {
             var req = new RestRequest($"api/planets/{id}/", Method.Get);
             return _client.Execute<PlanetResponse>(req);
@@ -41,7 +41,7 @@
         /// Получить список всех планет
         /// </summary>
         /// <returns></returns>
-        public RestResponse<AllPlanetResponse> GetAllPlanetPage()
+        public RestResponse<AllPlanetResponse> GetAllPlanetPageSW()
         {
             var req = new RestRequest("api/planets/", Method.Get);
             return _client.Execute<AllPlanetResponse>(req);
@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="id">номер звездолетыа</param>
         /// <returns></returns>
-        public RestResponse<StarshipsResponse> GetStarshipsPage(int id)
+        public RestResponse<StarshipsResponse> GetStarshipsPageSW(int id)
         {
             var req = new RestRequest($"api/starships/{id}/", Method.Get);
             return _client.Execute<StarshipsResponse>(req);
@@ -61,7 +61,7 @@
         /// Получить список всех звездолетов
         /// </summary>
         /// <returns></returns>
-        public RestResponse<AllStarshipsResponse> GetAllStarshipsPage()
+        public RestResponse<AllStarshipsResponse> GetAllStarshipsPageSW()
         {
             var req = new RestRequest("api/starships/", Method.Get);
             return _client.Execute<AllStarshipsResponse>(req);
@@ -72,7 +72,7 @@
         /// </summary>
         /// <param name="id">номер фильма</param>
         /// <returns></returns>
-        public RestResponse<FilmsResponse> GetFilmsPage(int id)
+        public RestResponse<FilmsResponse> GetFilmsPageSW(int id)
         {
             var req = new RestRequest($"api/films/{id}/", Method.Get);
             return _client.Execute<FilmsResponse>(req);
@@ -81,7 +81,7 @@
         /// Получить список всх фильмов
         /// </summary>
         /// <returns></returns>
-        public RestResponse<FilmsResponse> GetAllFilmsPage()
+        public RestResponse<FilmsResponse> GetAllFilmsPageSW()
         {
             var req = new RestRequest("api/films/", Method.Get);
             return _client.Execute<FilmsResponse>(req);
@@ -92,7 +92,7 @@
         /// </summary>
         /// <param name="id">номер транспортного средства</param>
         /// <returns></returns>
-        public RestResponse<VehiclesResponse> GetVehiclesPage(int id)
+        public RestResponse<VehiclesResponse> GetVehiclesPageSW(int id)
         {
             var req = new RestRequest($"api/vehicles/{id}/", Method.Get);
             return _client.Execute<VehiclesResponse>(req);
@@ -101,7 +101,7 @@
         /// Получить полный список транспортных средств
         /// </summary>
         /// <returns></returns>
-        public RestResponse<AllVehiclesResponse> GetAllVehiclesPage()
+        public RestResponse<AllVehiclesResponse> GetAllVehiclesPageSW()
         {
             var req = new RestRequest("api/vehicles/", Method.Get);
             return _client.Execute<AllVehiclesResponse>(req);
@@ -112,7 +112,7 @@
         /// </summary>
         /// <param name="id">номер существа</param>
         /// <returns></returns>
-        public RestResponse<SpeciesResponse> GetSpeciesPage(int id)
+        public RestResponse<SpeciesResponse> GetSpeciesPageSW(int id)
         {
             var req = new RestRequest($"api/species/{id}/", Method.Get);
             return _client.Execute<SpeciesResponse>(req);
@@ -121,7 +121,7 @@
         /// Получить список всех типов существ
         /// </summary>
         /// <returns></returns>
-        public RestResponse<AllSpeciesResponse> GetAllSpeciesPage()
+        public RestResponse<AllSpeciesResponse> GetAllSpeciesPageSW()
         {
             var req = new RestRequest("api/species/", Method.Get);
             return _client.Execute<AllSpeciesResponse>(req);

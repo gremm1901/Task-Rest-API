@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class CreateCategoriesRequest
+    public class CreateCategoriesPFSRequest
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("name") ]

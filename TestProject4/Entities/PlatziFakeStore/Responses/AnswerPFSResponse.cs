@@ -1,9 +1,12 @@
 ﻿namespace AutotestAPI
 {
-    public class ErrorLoginUserResponse
+    public class AnswerPFSResponse
     {
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public List<string> Message { get; set; }
+
+        [JsonPropertyName("error")]
+        public string Error { get; set; }
 
         [JsonPropertyName("statusCode")]
         public int StatusCode { get; set; }

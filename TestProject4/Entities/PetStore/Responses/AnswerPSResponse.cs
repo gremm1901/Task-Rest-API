@@ -1,6 +1,6 @@
 ﻿namespace AutotestAPI
 {
-    public class AnswerResponse
+    public class AnswerPSResponse
     {
         [JsonPropertyName("code")]
         public int Code { get; set; }
