@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="limit">лимит вывода массива</param>
         /// <returns></returns>
-        public RestResponse<List<UserPFSResponse>> GetUsersPZS(int limit) 
+        public RestResponse<List<UserPFSResponse>> GetUsersPFS(int limit) 
         {
             var req = new RestRequest($"api/v1/users?limit={limit}", Method.Get);
             return _client.Execute<List<UserPFSResponse>>(req);
@@ -22,7 +22,7 @@
         /// </summary>
         /// <param name="body">Данные клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> CreateUsersPZS(CreateUserPFSRequest body)
+        public RestResponse<UserPFSResponse> CreateUsersPFS(CreateUserPFSRequest body)
         {
             var req = new RestRequest("api/v1/users", Method.Post);
             req.AddJsonBody(body);
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> GetUsersIdPZS(int id)
+        public RestResponse<UserPFSResponse> GetUsersIdPFS(int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Get);
             return _client.Execute<UserPFSResponse>(req);
@@ -44,7 +44,7 @@
         /// <param name="body">Данные клиента для обновления</param>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> PutUserIdPZS(CreateUserPFSRequest body, int id)
+        public RestResponse<UserPFSResponse> PutUserIdPFS(CreateUserPFSRequest body, int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Put);
             req.AddJsonBody(body);
@@ -55,7 +55,7 @@
         /// </summary>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> DeleteUsersIdPZS(int id)
+        public RestResponse<UserPFSResponse> DeleteUsersIdPFS(int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Delete);
             return _client.Execute<UserPFSResponse>(req);
@@ -65,7 +65,7 @@
         /// </summary>
         /// <param name="body">Почта клиента</param>
         /// <returns></returns>
-        public RestResponse<IsAvailableUserPFSReaponse> IsAvailableUserPZS(IsAvailableUserPFSRequest body)
+        public RestResponse<IsAvailableUserPFSReaponse> IsAvailableUserPFS(IsAvailableUserPFSRequest body)
         {
             var req = new RestRequest("api/v1/users/is-available", Method.Post);
             req.AddJsonBody(body);
@@ -76,7 +76,7 @@
         /// </summary>
         /// <param name="body">Данные клиента для входа</param>
         /// <returns></returns>
-        public RestResponse<LoginUserPFSResponse> LoginUserPZS(LoginUserPFSRequest body)
+        public RestResponse<LoginUserPFSResponse> LoginUserPFS(LoginUserPFSRequest body)
         {
             var req = new RestRequest("api/v1/auth/login", Method.Post);
             req.AddJsonBody(body);
@@ -87,7 +87,7 @@
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> GetProfileUserPZS(string token) 
+        public RestResponse<UserPFSResponse> GetProfileUserPFS(string token) 
         {
             var req = new RestRequest("api/v1/auth/profile", Method.Get);
             req.AddHeader("Authorization", "Bearer " + token);

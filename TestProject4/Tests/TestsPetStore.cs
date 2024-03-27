@@ -64,7 +64,7 @@ namespace AutotestAPI
             };
             client.CreateUserPS(createUserRequest);
             var getResp = client.GetUserPS(createUserRequest.Username);
-            AssertionHelper.CheckParametrUserPetStore(createUserRequest, getResp.Data);
+            AssertionHelper.CheckParametrUserPS(createUserRequest, getResp.Data);
             AssertionHelper.ChecksStatus(getResp, 200);
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace AutotestAPI
             var client = new PetStoreClient("https://petstore.swagger.io");
             var resp = client.GetPetIdPS(GenerationData.GenerationLong(18));
             AssertionHelper.ChecksStatus(resp, 404);
-            AssertionHelper.CheckErrorMesseg(resp.Data,1, "error", "Pet not found");
+            AssertionHelper.CheckErrorMessegPS(resp.Data,1, "error", "Pet not found");
         }
     }
 }

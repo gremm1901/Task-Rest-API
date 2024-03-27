@@ -21,7 +21,7 @@
             var resp = client.CreateUsersPFS(createUserRequest);
             var respUserId = client.GetUsersIdPFS(resp.Data.Id);
             AssertionHelper.CheckParametrUserPFS(resp.Data, respUserId.Data);
-            client.DeleteUsersIdPZS(respUserId.Data.Id);
+            client.DeleteUsersIdPFS(respUserId.Data.Id);
             var respDeleteId = client.GetUsersIdPFS(respUserId.Data.Id);
             AssertionHelper.ChecksStatus(respDeleteId, 400);
         }
