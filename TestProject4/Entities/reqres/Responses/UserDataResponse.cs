@@ -2,6 +2,7 @@
 {
     public class UserDataResponse
     {
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
         [JsonPropertyName("email")]

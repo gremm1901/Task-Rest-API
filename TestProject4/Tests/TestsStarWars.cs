@@ -9,11 +9,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetPeoplePage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Âûחמג לועמהא AllPeoplePage
         [Test]
@@ -21,11 +17,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllPeoplePage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //Âûחמג לועמהא GetFilmsPage
@@ -34,11 +26,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetFilmsPage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Âûחמג לועמהא AllFilmsPage
         [Test]
@@ -46,11 +34,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllFilmsPage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //Âûחמג לועמהא GetVehiclesPage
@@ -59,11 +43,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetVehiclesPage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp, 404);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp, 404);
         }
         //Âûחמג לועמהא GetAllVehiclesPage
         [Test]
@@ -71,11 +51,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllVehiclesPage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //Âûחמג לועמהא GetStarshipsPage
@@ -84,11 +60,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetStarshipsPage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Âûחמג לועמהא AllGetStarshipsPage
         [Test]
@@ -96,11 +68,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllStarshipsPage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //Âûחמג לועמהא GetPlanetPage
@@ -109,11 +77,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetPlanetPage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Âûחמג לועמהא AllGetPlanetPage
         [Test]
@@ -121,11 +85,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllPlanetPage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //Âûחמג לועמהא GetSpeciesPage
@@ -134,11 +94,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetSpeciesPage(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Âûחמג לועמהא GetAllSpeciesPage
         [Test]
@@ -146,11 +102,7 @@ namespace AutotestAPI
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllSpeciesPage();
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Ïףסעמי מעגוע"); }
+            AssertionHelper.ChecksStatus(resp);
         }
     }
 }
