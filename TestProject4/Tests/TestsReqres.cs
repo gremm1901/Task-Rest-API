@@ -13,7 +13,6 @@
                     Name = "dasgsag"
                 };
             var resp = client.CreateClient(createClientRequest);
-            Console.WriteLine(resp.Data.Id);
             AssertionHelper.ChecksStatus(resp, 201);
         }
         //Вызов метода GetResourcePage
@@ -23,7 +22,6 @@
 
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetResourcePage(2,3);
-            Console.WriteLine(resp.Data.Page);
             AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientPage
@@ -33,7 +31,6 @@
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetClientPage(2);
             var georgeEdwards = resp.Data.Data.First(p => p.FirstName == "George" && p.LastName == "Edwards");
-            Console.WriteLine(georgeEdwards.Email);
             AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientId

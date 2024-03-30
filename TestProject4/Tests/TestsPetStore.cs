@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+using Newtonsoft.Json;
 
 namespace AutotestAPI
 {
@@ -77,7 +78,7 @@ namespace AutotestAPI
             var client = new PetStoreClient("https://petstore.swagger.io");
             var resp = client.GetPetFindByStatusPS("available");
             AssertionHelper.ChecksStatus(resp);
-            var idPet = resp.Data[0].Id;
+            var idPet = resp.Data[GenerationData.GenerationInt(1)].Id;
             var respPetId = client.GetPetIdPS(idPet);
             AssertionHelper.ChecksStatus(respPetId);
             Assert.IsTrue(respPetId.Data.Id == idPet, $"Id не совпадает");
@@ -91,7 +92,7 @@ namespace AutotestAPI
         public void TestGetPetByAbsentId()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var resp = client.GetPetIdPS(GenerationData.GenerationLong(18));
+            var resp = client.GetPetIdPS((GenerationData.GenerationLong(18)));
             AssertionHelper.ChecksStatus(resp, 404);
             AssertionHelper.CheckErrorMessegPS(resp.Data,1, "error", "Pet not found");
         }
