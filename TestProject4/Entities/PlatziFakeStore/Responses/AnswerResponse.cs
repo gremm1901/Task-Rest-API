@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Responses
 {
-    public class AnswerPFSResponse
+    public class AnswerResponse
     {
         [JsonPropertyName("message")]
         public List<string> Message { get; set; }

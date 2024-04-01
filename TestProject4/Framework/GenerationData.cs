@@ -1,4 +1,4 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Framework
 {
     /// <summary>
     /// Класс с генерацией различных данных
@@ -52,7 +52,7 @@
             Random random = new Random();
             string str = "";
             string strDomen = "";
-            for (int i = 0; i < (length-3)/2; i++)
+            for (int i = 0; i < (length - 3) / 2; i++)
             {
                 str += charsSymbols[random.Next(charsSymbols.Length)];
             }
@@ -60,7 +60,7 @@
             {
                 strDomen += charsSymbols[random.Next(charsSymbols.Length)];
             }
-            return str + "@" + strDomen+".ru";
+            return str + "@" + strDomen + ".ru";
         }
         /// <summary>
         /// Генерация случайного положительного числа, длиною 9 символов
@@ -86,7 +86,7 @@
         {
             Random random = new Random();
             string str = "";
-            for (int i = 0; i < length; i++) 
+            for (int i = 0; i < length; i++)
             {
                 str += charsNumbers[random.Next(charsNumbers.Length)];
             }
@@ -97,7 +97,7 @@
         /// </summary>
         /// <param name="lengt">Длина номер без учета 79</param>
         /// <returns></returns>
-        public static string GenerationMobilePhone(int lengt = 9) 
+        public static string GenerationMobilePhone(int lengt = 9)
         {
             return "79" + GenerationLong(lengt).ToString();
         }

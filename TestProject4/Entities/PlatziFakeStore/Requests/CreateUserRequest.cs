@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Requests
 {
-    public class CreateUserPFSRequest
+    public class CreateUserRequest
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("email")]

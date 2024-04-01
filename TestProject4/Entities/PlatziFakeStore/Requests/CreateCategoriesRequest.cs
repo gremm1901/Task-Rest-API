@@ -1,9 +1,9 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Requests
 {
-    public class CreateCategoriesPFSRequest
+    public class CreateCategoriesRequest
     {
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonPropertyName("name") ]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

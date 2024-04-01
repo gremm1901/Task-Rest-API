@@ -1,4 +1,7 @@
-﻿namespace AutotestAPI
+﻿using AutotestAPI.Entities.reqres.Requests;
+using AutotestAPI.Entities.reqres.Responses;
+
+namespace AutotestAPI.Client
 {
     public class ReqresClient
     {

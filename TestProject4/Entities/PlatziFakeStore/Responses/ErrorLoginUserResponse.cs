@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Responses
 {
-    public class ErrorLoginUserPFSResponse
+    public class ErrorLoginUserResponse
     {
         [JsonPropertyName("message")]
         public string Message { get; set; }

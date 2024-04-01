@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PetStore.Responses
 {
-    public class AnswerPSResponse
+    public class AnswerResponse
     {
         [JsonPropertyName("code")]
         public int Code { get; set; }

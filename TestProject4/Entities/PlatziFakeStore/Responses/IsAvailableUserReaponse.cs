@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Responses
 {
-    public class IsAvailableUserPFSReaponse
+    public class IsAvailableUserReaponse
     {
         [JsonPropertyName("isAvailable")]
         public bool IsAvailable { get; set; }

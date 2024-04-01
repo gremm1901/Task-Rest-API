@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PlatziFakeStore.Responses
 {
-    public class ErrorPFSRespose:AnswerPFSResponse
+    public class ErrorRespose : AnswerResponse
     {
         [JsonPropertyName("path")]
         public string Path { get; set; }

@@ -1,4 +1,8 @@
-﻿namespace AutotestAPI
+﻿using AutotestAPI.Client;
+using AutotestAPI.Entities.reqres.Requests;
+using AutotestAPI.Framework;
+
+namespace AutotestAPI.Tests
 {
     public class TestsReqres
     {
@@ -8,12 +12,12 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var createClientRequest = new CreateClientRequest
-                {
-                    Job = GenerationData.GenerationString(10),
-                    Name = "dasgsag"
-                };
+            {
+                Job = GenerationData.GenerationString(10),
+                Name = "dasgsag"
+            };
             var resp = client.CreateClient(createClientRequest);
-            AssertionHelper.ChecksStatus(resp, 201);
+            Framework.AssertionHelper.ChecksStatus(resp, 201);
         }
         //Вызов метода GetResourcePage
         [Test]
@@ -21,8 +25,8 @@
         {
 
             var client = new ReqresClient("https://reqres.in");
-            var resp = client.GetResourcePage(2,3);
-            AssertionHelper.ChecksStatus(resp);
+            var resp = client.GetResourcePage(2, 3);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientPage
         [Test]
@@ -31,7 +35,7 @@
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetClientPage(2);
             var georgeEdwards = resp.Data.Data.First(p => p.FirstName == "George" && p.LastName == "Edwards");
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientId
         [Test]
@@ -39,7 +43,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetClientId(2);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutUpdateClient
         [Test]
@@ -47,7 +51,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutUpdateClient(2);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateClient
         [Test]
@@ -55,7 +59,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutchUpdateClient(2);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода DeleteClient
         [Test]
@@ -63,7 +67,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.DeleteClient(2);
-            AssertionHelper.ChecksStatus(resp, 204);
+            Framework.AssertionHelper.ChecksStatus(resp, 204);
         }
         //Вызов метода GetResourcePage
         [Test]
@@ -71,7 +75,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetResourcePage(1);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutUpdateResourceList
         [Test]
@@ -79,7 +83,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutUpdateResourceList(2);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateResourceList
         [Test]
@@ -87,7 +91,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutchUpdateResourceList(2);
-            AssertionHelper.ChecksStatus(resp);
+            Framework.AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateResourceList
         [Test]
@@ -95,7 +99,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.DeleteResourceList(2);
-            AssertionHelper.ChecksStatus(resp, 204);
+            Framework.AssertionHelper.ChecksStatus(resp, 204);
         }
         //Вызов метода CreateSessionClient
         [Test]
@@ -109,7 +113,7 @@
                 Password = GenerationData.GenerationString(10)
             };
             var resp = client.CreateSessionClient(createClientRequest);
-            AssertionHelper.ChecksStatus(resp, 400);
+            Framework.AssertionHelper.ChecksStatus(resp, 400);
         }
         //Вызов метода CreateSessionClient
         [Test]
@@ -123,7 +127,7 @@
                 Password = GenerationData.GenerationString(10)
             };
             var resp = client.RegisterClient(createClientRequest);
-            AssertionHelper.ChecksStatus(resp, 400);
+            Framework.AssertionHelper.ChecksStatus(resp, 400);
         }
         //Вызов метода LogoutClient
         [Test]
@@ -131,7 +135,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.LogoutClient();
-            AssertionHelper.ChecksStatus(resp, 200);
+            Framework.AssertionHelper.ChecksStatus(resp, 200);
         }
 
     }

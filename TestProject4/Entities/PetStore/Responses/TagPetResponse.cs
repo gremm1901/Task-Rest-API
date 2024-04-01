@@ -1,6 +1,6 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PetStore.Responses
 {
-    public class CategoryPSResponse
+    public class TagPetResponse
     {
         [JsonPropertyName("id")]
         public long Id { get; set; }

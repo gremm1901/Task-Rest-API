@@ -1,12 +1,12 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.PetStore.Responses
 {
-    public class PetPSResponse : AnswerPSResponse
+    public class PetResponse : AnswerResponse
     {
         [JsonPropertyName("id")]
         public long Id { get; set; }
 
         [JsonPropertyName("category")]
-        public CategoryPSResponse Category { get; set; }
+        public CategoryResponse Category { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -15,7 +15,7 @@
         public List<string> PhotoUrls { get; set; }
 
         [JsonPropertyName("tags")]
-        public List<TagPetPSResponse> Tags { get; set; }
+        public List<TagPetResponse> Tags { get; set; }
 
         [JsonPropertyName("status")]
         public string Status { get; set; }

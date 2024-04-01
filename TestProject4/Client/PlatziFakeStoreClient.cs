@@ -1,4 +1,7 @@
-﻿namespace AutotestAPI
+﻿using AutotestAPI.Entities.PlatziFakeStore.Requests;
+using AutotestAPI.Entities.PlatziFakeStore.Responses;
+
+namespace AutotestAPI.Client
 {
     public class PlatziFakeStoreClient
     {
@@ -12,31 +15,31 @@
         /// </summary>
         /// <param name="limit">лимит вывода массива</param>
         /// <returns></returns>
-        public RestResponse<List<UserPFSResponse>> GetUsersPFS(int limit) 
+        public RestResponse<List<UserResponse>> GetUsers(int limit)
         {
             var req = new RestRequest($"api/v1/users?limit={limit}", Method.Get);
-            return _client.Execute<List<UserPFSResponse>>(req);
+            return _client.Execute<List<UserResponse>>(req);
         }
         /// <summary>
         /// Создать клиента
         /// </summary>
         /// <param name="body">Данные клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> CreateUsersPFS(CreateUserPFSRequest body)
+        public RestResponse<UserResponse> CreateUsers(CreateUserRequest body)
         {
             var req = new RestRequest("api/v1/users", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<UserPFSResponse>(req);
+            return _client.Execute<UserResponse>(req);
         }
         /// <summary>
         /// Получить клиента по его Id
         /// </summary>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> GetUsersIdPFS(int id)
+        public RestResponse<UserResponse> GetUsersId(int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Get);
-            return _client.Execute<UserPFSResponse>(req);
+            return _client.Execute<UserResponse>(req);
         }
         /// <summary>
         /// Обновить клиента
@@ -44,54 +47,54 @@
         /// <param name="body">Данные клиента для обновления</param>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> PutUserIdPFS(CreateUserPFSRequest body, int id)
+        public RestResponse<UserResponse> PutUserId(CreateUserRequest body, int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Put);
             req.AddJsonBody(body);
-            return _client.Execute<UserPFSResponse>(req);
+            return _client.Execute<UserResponse>(req);
         }
         /// <summary>
         /// Удалить конкретного клиента
         /// </summary>
         /// <param name="id">Id клиента</param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> DeleteUsersIdPFS(int id)
+        public RestResponse<UserResponse> DeleteUsersId(int id)
         {
             var req = new RestRequest($"api/v1/users/{id}", Method.Delete);
-            return _client.Execute<UserPFSResponse>(req);
+            return _client.Execute<UserResponse>(req);
         }
         /// <summary>
         /// Проверить онлан ли клиент
         /// </summary>
         /// <param name="body">Почта клиента</param>
         /// <returns></returns>
-        public RestResponse<IsAvailableUserPFSReaponse> IsAvailableUserPFS(IsAvailableUserPFSRequest body)
+        public RestResponse<IsAvailableUserReaponse> IsAvailableUser(IsAvailableUserPRequest body)
         {
             var req = new RestRequest("api/v1/users/is-available", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<IsAvailableUserPFSReaponse>(req);
+            return _client.Execute<IsAvailableUserReaponse>(req);
         }
         /// <summary>
         /// Авторизация клиента
         /// </summary>
         /// <param name="body">Данные клиента для входа</param>
         /// <returns></returns>
-        public RestResponse<LoginUserPFSResponse> LoginUserPFS(LoginUserPFSRequest body)
+        public RestResponse<LoginUserResponse> LoginUser(LoginUserRequest body)
         {
             var req = new RestRequest("api/v1/auth/login", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<LoginUserPFSResponse>(req);
+            return _client.Execute<LoginUserResponse>(req);
         }
         /// <summary>
         /// Получить профиль авторизованого клиента
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public RestResponse<UserPFSResponse> GetProfileUserPFS(string token) 
+        public RestResponse<UserResponse> GetProfileUser(string token)
         {
             var req = new RestRequest("api/v1/auth/profile", Method.Get);
             req.AddHeader("Authorization", "Bearer " + token);
-            return _client.Execute<UserPFSResponse>(req) ;
+            return _client.Execute<UserResponse>(req);
         }
         /// <summary>
         /// Получить список продуктов
@@ -99,31 +102,31 @@
         /// <param name="limit">Лимит по списку</param>
         /// <param name="offset">хз</param>
         /// <returns></returns>
-        public RestResponse<List<AllDataProductsPFSResponse>> GetProductPFS(int limit, int offset = 0)
+        public RestResponse<List<AllDataProductsResponse>> GetProduct(int limit, int offset = 0)
         {
             var req = new RestRequest($"api/v1/products?limit={limit}&offset={offset}", Method.Get);
-            return _client.Execute<List<AllDataProductsPFSResponse>>(req);
+            return _client.Execute<List<AllDataProductsResponse>>(req);
         }
         /// <summary>
         /// Создать продукт
         /// </summary>
         /// <param name="body">Данные продукта</param>
         /// <returns></returns>
-        public RestResponse<CreateProductPFSRequest> CreateProductPFS(CreateUserPFSRequest body)
+        public RestResponse<CreateProductRequest> CreateProduct(CreateUserRequest body)
         {
             var req = new RestRequest("api/v1/products", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<CreateProductPFSRequest>(req);
+            return _client.Execute<CreateProductRequest>(req);
         }
         /// <summary>
         /// Получить продукт по его id
         /// </summary>
         /// <param name="id">Id продукта</param>
         /// <returns></returns>
-        public RestResponse<AllDataProductsPFSResponse> GetProductIdPFS(int id)
+        public RestResponse<AllDataProductsResponse> GetProductId(int id)
         {
             var req = new RestRequest($"api/v1/products/{id}", Method.Get);
-            return _client.Execute<AllDataProductsPFSResponse>(req);
+            return _client.Execute<AllDataProductsResponse>(req);
         }
         /// <summary>
         /// Обновить конкретный продукт
@@ -131,18 +134,18 @@
         /// <param name="body">Данные для обновления</param>
         /// <param name="id">Id продукта</param>
         /// <returns></returns>
-        public RestResponse<AllDataProductsPFSResponse> PutProductIdPFS(CreateProductPFSRequest body, int id)
+        public RestResponse<AllDataProductsResponse> PutProductId(CreateProductRequest body, int id)
         {
             var req = new RestRequest($"api/v1/products/{id}", Method.Put);
             req.AddJsonBody(body);
-            return _client.Execute<AllDataProductsPFSResponse>(req);
+            return _client.Execute<AllDataProductsResponse>(req);
         }
         /// <summary>
         /// Удалить конкретный продукт
         /// </summary>
         /// <param name="id">Id продукта</param>
         /// <returns></returns>
-        public RestResponse DeleteProductIdPFS(int id)
+        public RestResponse DeleteProductId(int id)
         {
             var req = new RestRequest($"api/v1/products/{id}", Method.Delete);
             return _client.Execute(req);
@@ -152,31 +155,31 @@
         /// </summary>
         /// <param name="limit">Лимит по выводу</param>
         /// <returns></returns>
-        public RestResponse<List<CategoriesPFSResponse>> GetCategoriesPFS(int limit)
+        public RestResponse<List<CategoriesResponse>> GetCategories(int limit)
         {
             var req = new RestRequest($"api/v1/categories?limit={limit}", Method.Get);
-            return _client.Execute<List<CategoriesPFSResponse>>(req);
+            return _client.Execute<List<CategoriesResponse>>(req);
         }
         /// <summary>
         /// Создание новой  котегории
         /// </summary>
         /// <param name="body">Данные категории для создания</param>
         /// <returns></returns>
-        public RestResponse<CategoriesPFSResponse> CreateCategoriesPFS(CreateCategoriesPFSRequest body)
+        public RestResponse<CategoriesResponse> CreateCategories(CreateCategoriesRequest body)
         {
             var req = new RestRequest("api/v1/categories", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<CategoriesPFSResponse>(req);
+            return _client.Execute<CategoriesResponse>(req);
         }
         /// <summary>
         /// Получить категорию по его id
         /// </summary>
         /// <param name="id">id категории</param>
         /// <returns></returns>
-        public RestResponse<CategoriesPFSResponse> GetCategoriesIdPFS(int id)
+        public RestResponse<CategoriesResponse> GetCategoriesId(int id)
         {
             var req = new RestRequest($"api/v1/categories/{id}", Method.Get);
-            return _client.Execute<CategoriesPFSResponse>(req);
+            return _client.Execute<CategoriesResponse>(req);
         }
         /// <summary>
         /// Обнавить категорию
@@ -184,21 +187,21 @@
         /// <param name="body">Данные для обновления</param>
         /// <param name="id">Id категории</param>
         /// <returns></returns>
-        public RestResponse<CategoriesPFSResponse> PutCategoriesIdPFS(CreateCategoriesPFSRequest body, int id)
+        public RestResponse<CategoriesResponse> PutCategoriesId(CreateCategoriesRequest body, int id)
         {
             var req = new RestRequest($"api/v1/categories/{id}", Method.Put);
             req.AddJsonBody(body);
-            return _client.Execute<CategoriesPFSResponse>(req);
+            return _client.Execute<CategoriesResponse>(req);
         }
         /// <summary>
         /// Удаление конкретной категории
         /// </summary>
         /// <param name="id">Id категории</param>
         /// <returns></returns>
-        public RestResponse<ErrorPFSRespose> DeleteCategoriesIdPFS(int id)
+        public RestResponse<ErrorRespose> DeleteCategoriesId(int id)
         {
             var req = new RestRequest($"api/v1/categories/{id}", Method.Delete);
-            return _client.Execute<ErrorPFSRespose>(req);
+            return _client.Execute<ErrorRespose>(req);
         }
     }
 }
