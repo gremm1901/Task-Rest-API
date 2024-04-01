@@ -1,10 +1,14 @@
 ﻿namespace AutotestAPI
 {
+    /// <summary>
+    /// Класс с генерацией различных данных
+    /// </summary>
     public static class GenerationData
     {
-        static readonly string charsNumbers = "1234567890";
-        static readonly string charsSymbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm";
-        static readonly string charsSpecial = "!@#$%^&*()_+=|/?.,m";
+        private const string charsNumbers = "1234567890";
+        private const string charsSymbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZqwertyuiopasdfghjklzxcvbnm";
+        private const string charsSpecial = "!@#$%^&*()_+=|/?.,m";
+        private static readonly string[] charsRole = ["admin", "customer"];
         /// <summary>
         /// Генерация строки без спец символов
         /// </summary>
@@ -34,7 +38,7 @@
             string str = "";
             for (int i = 0; i < length; i++)
             {
-                str = str + charsSpecial[random.Next(charsSpecial.Length)];
+                str += charsSpecial[random.Next(charsSpecial.Length)];
             }
             return str;
         }
@@ -50,11 +54,11 @@
             string strDomen = "";
             for (int i = 0; i < (length-3)/2; i++)
             {
-                str = str + charsSymbols[random.Next(charsSymbols.Length)];
+                str += charsSymbols[random.Next(charsSymbols.Length)];
             }
             for (int i = 0; i < (length - 3) / 2; i++)
             {
-                strDomen = strDomen + charsSymbols[random.Next(charsSymbols.Length)];
+                strDomen += charsSymbols[random.Next(charsSymbols.Length)];
             }
             return str + "@" + strDomen+".ru";
         }
@@ -69,7 +73,7 @@
             string str = "";
             for (int i = 0; i < length; i++)
             {
-                str = str + charsNumbers[random.Next(charsNumbers.Length)];
+                str += charsNumbers[random.Next(charsNumbers.Length)];
             }
             return Convert.ToInt32(str);
         }
@@ -84,9 +88,50 @@
             string str = "";
             for (int i = 0; i < length; i++) 
             {
-                str = str + charsNumbers[random.Next(charsNumbers.Length)];
+                str += charsNumbers[random.Next(charsNumbers.Length)];
             }
             return Convert.ToInt64(str);
+        }
+        /// <summary>
+        /// Создает номер телефона начинающийся с 79
+        /// </summary>
+        /// <param name="lengt">Длина номер без учета 79</param>
+        /// <returns></returns>
+        public static string GenerationMobilePhone(int lengt = 9) 
+        {
+            return "79" + GenerationLong(lengt).ToString();
+        }
+        /// <summary>
+        /// Создает номер телефона начинающийся с 495
+        /// </summary>
+        /// <param name="lengt">Длина номер без учета 495</param>
+        /// <returns></returns>
+        public static string GenerationHomePhone(int lengt = 7)
+        {
+            return "495" + GenerationLong(lengt).ToString();
+        }
+        /// <summary>
+        /// Создает URL "https://" случайный набор символов ".ru"
+        /// </summary>
+        /// <param name="lengt">Длина URL без учета "https://" ".ru"</param>
+        /// <returns></returns>
+        public static string GenerationUrl(int lengt = 12)
+        {
+            return "https://" + GenerationString(lengt) + ".ru";
+        }
+        /// <summary>
+        /// Возвращает роль 0 = admin, 1 = customer
+        /// </summary>
+        /// <param name="role"> 0 = admin, 1 = customer </param>
+        /// <returns></returns>
+        public static string GenerationRole(int role)
+        {
+            return role switch
+            {
+                0 => charsRole[0],
+                1 => charsRole[1],
+                _ => charsRole[0],
+            };
         }
     }
 }

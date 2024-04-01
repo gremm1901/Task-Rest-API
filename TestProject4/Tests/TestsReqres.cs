@@ -13,11 +13,7 @@
                     Name = "dasgsag"
                 };
             var resp = client.CreateClient(createClientRequest);
-            if (resp.Data != null)
-            {
-                Console.WriteLine(resp.Data.Id);
-                CheckStatus.ChecksStatus(resp, 201);
-            }else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp, 201);
         }
         //Вызов метода GetResourcePage
         [Test]
@@ -26,11 +22,7 @@
 
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetResourcePage(2,3);
-            if (resp.Data != null)
-            {
-                Console.WriteLine(resp.Data.Page);
-                CheckStatus.ChecksStatus(resp);
-            } else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientPage
         [Test]
@@ -38,12 +30,8 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetClientPage(2);
-            if (resp.Data != null)
-            {
-                var georgeEdwards = resp.Data.Data.First(p => p.FirstName == "George" && p.LastName == "Edwards");
-                Console.WriteLine(georgeEdwards.Email);
-                CheckStatus.ChecksStatus(resp);
-            }else { Assert.Fail("Пустой ответ"); }
+            var georgeEdwards = resp.Data.Data.First(p => p.FirstName == "George" && p.LastName == "Edwards");
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода GetClientId
         [Test]
@@ -51,11 +39,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetClientId(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutUpdateClient
         [Test]
@@ -63,11 +47,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutUpdateClient(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateClient
         [Test]
@@ -75,11 +55,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutchUpdateClient(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода DeleteClient
         [Test]
@@ -87,11 +63,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.DeleteClient(2);
-            if (resp != null)
-            {
-                CheckStatus.ChecksStatus(resp, 204);
-            }
-            else { Assert.Fail("Ответ не пустой"); }
+            AssertionHelper.ChecksStatus(resp, 204);
         }
         //Вызов метода GetResourcePage
         [Test]
@@ -99,11 +71,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.GetResourcePage(1);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutUpdateResourceList
         [Test]
@@ -111,11 +79,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutUpdateResourceList(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateResourceList
         [Test]
@@ -123,11 +87,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.PutchUpdateResourceList(2);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp);
         }
         //Вызов метода PutchUpdateResourceList
         [Test]
@@ -135,11 +95,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.DeleteResourceList(2);
-            if (resp != null)
-            {
-                CheckStatus.ChecksStatus(resp, 204);
-            }
-            else { Assert.Fail("Ответ не пустой"); }
+            AssertionHelper.ChecksStatus(resp, 204);
         }
         //Вызов метода CreateSessionClient
         [Test]
@@ -153,19 +109,7 @@
                 Password = GenerationData.GenerationString(10)
             };
             var resp = client.CreateSessionClient(createClientRequest);
-            if (resp.Data != null)
-            {
-                Console.WriteLine(GenerationData.GenerationString(10));
-                Console.WriteLine(GenerationData.GenerationSpecialCharacters(10));
-                Console.WriteLine(GenerationData.GenerationEmail(17));
-                Console.WriteLine(GenerationData.GenerationInt(9));
-                Console.WriteLine(GenerationData.GenerationLong(18));
-                CheckStatus.ChecksStatus(resp, 400);
-            }
-            else
-            {
-                Assert.Fail("Пустой ответ");
-            }
+            AssertionHelper.ChecksStatus(resp, 400);
         }
         //Вызов метода CreateSessionClient
         [Test]
@@ -179,11 +123,7 @@
                 Password = GenerationData.GenerationString(10)
             };
             var resp = client.RegisterClient(createClientRequest);
-            if (resp.Data != null)
-            {
-                CheckStatus.ChecksStatus(resp, 400);
-            }
-            else { Assert.Fail("Пустой ответ"); }
+            AssertionHelper.ChecksStatus(resp, 400);
         }
         //Вызов метода LogoutClient
         [Test]
@@ -191,11 +131,7 @@
         {
             var client = new ReqresClient("https://reqres.in");
             var resp = client.LogoutClient();
-            if (resp != null)
-            {
-                CheckStatus.ChecksStatus(resp, 200);
-            }
-            else { Assert.Fail("Ответ не пустой"); }
+            AssertionHelper.ChecksStatus(resp, 200);
         }
 
     }
