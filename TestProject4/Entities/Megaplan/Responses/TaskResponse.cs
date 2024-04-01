@@ -1,4 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Diagnostics;
 
 namespace AutotestAPI.Entities.Megaplan.Responses
 {
@@ -23,10 +23,10 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public string Status { get; set; }
 
         [JsonPropertyName("statusChangeTime")]
-        public StatusChangeTime StatusChangeTime { get; set; }
+        public StatusChangeTimeResponse StatusChangeTime { get; set; }
 
         [JsonPropertyName("owner")]
-        public Owner Owner { get; set; }
+        public OwnerResponse Owner { get; set; }
 
         [JsonPropertyName("isTemplateOwnerCurrentUser")]
         public bool IsTemplateOwnerCurrentUser { get; set; }
@@ -44,7 +44,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int ActualSubTasksCount { get; set; }
 
         [JsonPropertyName("responsible")]
-        public Responsible Responsible { get; set; }
+        public ResponsibleResponse Responsible { get; set; }
 
         [JsonPropertyName("completed")]
         public int Completed { get; set; }
@@ -86,13 +86,13 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int AttachesCount { get; set; }
 
         [JsonPropertyName("actualStart")]
-        public ActualStart ActualStart { get; set; }
+        public ActualStartResponse ActualStart { get; set; }
 
         [JsonPropertyName("plannedWork")]
-        public PlannedWork PlannedWork { get; set; }
+        public PlannedWorkResponse PlannedWork { get; set; }
 
         [JsonPropertyName("actualWork")]
-        public ActualWork ActualWork { get; set; }
+        public ActualWorkResponse ActualWork { get; set; }
 
         [JsonPropertyName("previousTasks")]
         public List<object> PreviousTasks { get; set; }
@@ -107,7 +107,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public object PlannedFinish { get; set; }
 
         [JsonPropertyName("duration")]
-        public Duration Duration { get; set; }
+        public DurationResponse Duration { get; set; }
 
         [JsonPropertyName("parents")]
         public List<object> Parents { get; set; }
@@ -119,7 +119,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public object Project { get; set; }
 
         [JsonPropertyName("participants")]
-        public List<Participant> Participants { get; set; }
+        public List<ParticipantResponse> Participants { get; set; }
 
         [JsonPropertyName("participantsCount")]
         public int ParticipantsCount { get; set; }
@@ -137,7 +137,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int MilestonesCount { get; set; }
 
         [JsonPropertyName("rights")]
-        public Rights Rights { get; set; }
+        public RightsResponse Rights { get; set; }
 
         [JsonPropertyName("relationLinks")]
         public List<object> RelationLinks { get; set; }
@@ -167,7 +167,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int WorkedOffTimeCount { get; set; }
 
         [JsonPropertyName("workedOffTimeTotal")]
-        public WorkedOffTimeTotal WorkedOffTimeTotal { get; set; }
+        public WorkedOffTimeTotalResponse WorkedOffTimeTotal { get; set; }
 
         [JsonPropertyName("todos")]
         public List<object> Todos { get; set; }
@@ -179,7 +179,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public object Contractor { get; set; }
 
         [JsonPropertyName("timeCreated")]
-        public TimeCreated TimeCreated { get; set; }
+        public TimeCreatedResponse TimeCreated { get; set; }
 
         [JsonPropertyName("deadlineChangeRequest")]
         public object DeadlineChangeRequest { get; set; }
@@ -215,7 +215,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public List<object> EntitiesByTemplate { get; set; }
 
         [JsonPropertyName("userCreated")]
-        public UserCreated UserCreated { get; set; }
+        public UserCreatedResponse UserCreated { get; set; }
 
         [JsonPropertyName("finalRating")]
         public object FinalRating { get; set; }
@@ -353,7 +353,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public List<object> Category130CustomFieldFayliki { get; set; }
 
         [JsonPropertyName("Category130CustomFieldPlanFakt")]
-        public Category130CustomFieldPlanFakt Category130CustomFieldPlanFakt { get; set; }
+        public Category130CustomFieldPlanFaktResponse Category130CustomFieldPlanFakt { get; set; }
 
         [JsonPropertyName("ratingFieldsCount")]
         public int RatingFieldsCount { get; set; }
@@ -383,7 +383,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int AllFilesCount { get; set; }
 
         [JsonPropertyName("attachesInfo")]
-        public AttachesInfo AttachesInfo { get; set; }
+        public AttachesInfoResponse AttachesInfo { get; set; }
 
         [JsonPropertyName("hiddenCommentsCount")]
         public int HiddenCommentsCount { get; set; }
@@ -409,425 +409,4 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         [JsonPropertyName("calculatedFieldsCount")]
         public int CalculatedFieldsCount { get; set; }
     }
-
-    public class Department
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-    }
-
-    public class Duration
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public int Value { get; set; }
-    }
-
-    public class ContactInfo
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
-
-        [JsonPropertyName("comment")]
-        public string Comment { get; set; }
-
-        [JsonPropertyName("isMain")]
-        public bool? IsMain { get; set; }
-
-        [JsonPropertyName("subject")]
-        public Subject Subject { get; set; }
-    }
-
-    public class LastOnline
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public DateTime Value { get; set; }
-    }
-
-    public class Meta
-    {
-        [JsonPropertyName("status")]
-        public int Status { get; set; }
-
-        [JsonPropertyName("errors")]
-        public List<object> Errors { get; set; }
-
-        [JsonPropertyName("pagination")]
-        public List<object> Pagination { get; set; }
-    }
-
-    public class Owner
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
-
-        [JsonPropertyName("middleName")]
-        public string MiddleName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
-
-        [JsonPropertyName("position")]
-        public string Position { get; set; }
-
-        [JsonPropertyName("department")]
-        public Department Department { get; set; }
-
-        [JsonPropertyName("uid")]
-        public int Uid { get; set; }
-
-        [JsonPropertyName("gender")]
-        public string Gender { get; set; }
-
-        [JsonPropertyName("birthday")]
-        public object Birthday { get; set; }
-
-        [JsonPropertyName("inn")]
-        public string Inn { get; set; }
-
-        [JsonPropertyName("contactInfo")]
-        public List<ContactInfo> ContactInfo { get; set; }
-
-        [JsonPropertyName("contactInfoCount")]
-        public int ContactInfoCount { get; set; }
-
-        [JsonPropertyName("isWorking")]
-        public bool IsWorking { get; set; }
-
-        [JsonPropertyName("nearestVacation")]
-        public object NearestVacation { get; set; }
-
-        [JsonPropertyName("isReadable")]
-        public bool IsReadable { get; set; }
-
-        [JsonPropertyName("isOnline")]
-        public bool IsOnline { get; set; }
-
-        [JsonPropertyName("lastOnline")]
-        public LastOnline LastOnline { get; set; }
-
-        [JsonPropertyName("canLogin")]
-        public bool CanLogin { get; set; }
-
-        [JsonPropertyName("avatar")]
-        public object Avatar { get; set; }
-    }
-
-    public class Participant
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-    }
-
-    public class PlannedWork
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public int Value { get; set; }
-    }
-
-    public class Responsible
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-    }
-
-    public class Rights
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("read")]
-        public bool Read { get; set; }
-
-        [JsonPropertyName("edit")]
-        public bool Edit { get; set; }
-
-        [JsonPropertyName("remove")]
-        public bool Remove { get; set; }
-
-        [JsonPropertyName("updateDeepLastActivity")]
-        public bool UpdateDeepLastActivity { get; set; }
-
-        [JsonPropertyName("acceptWork")]
-        public bool AcceptWork { get; set; }
-
-        [JsonPropertyName("rejectWork")]
-        public bool RejectWork { get; set; }
-
-        [JsonPropertyName("acceptTask")]
-        public bool AcceptTask { get; set; }
-
-        [JsonPropertyName("rejectTask")]
-        public bool RejectTask { get; set; }
-
-        [JsonPropertyName("acceptDeadline")]
-        public bool AcceptDeadline { get; set; }
-
-        [JsonPropertyName("rejectDeadline")]
-        public bool RejectDeadline { get; set; }
-
-        [JsonPropertyName("changeDeadline")]
-        public bool ChangeDeadline { get; set; }
-
-        [JsonPropertyName("requestDeadline")]
-        public bool RequestDeadline { get; set; }
-
-        [JsonPropertyName("createSubtask")]
-        public bool CreateSubtask { get; set; }
-
-        [JsonPropertyName("createNegotiationSubtask")]
-        public bool CreateNegotiationSubtask { get; set; }
-
-        [JsonPropertyName("editExecutors")]
-        public bool EditExecutors { get; set; }
-
-        [JsonPropertyName("editExtFields")]
-        public bool EditExtFields { get; set; }
-
-        [JsonPropertyName("readMilestone")]
-        public bool ReadMilestone { get; set; }
-
-        [JsonPropertyName("createMilestone")]
-        public bool CreateMilestone { get; set; }
-
-        [JsonPropertyName("createFinOperation")]
-        public bool CreateFinOperation { get; set; }
-
-        [JsonPropertyName("convert")]
-        public bool Convert { get; set; }
-
-        [JsonPropertyName("delegate")]
-        public bool Delegate { get; set; }
-
-        [JsonPropertyName("readBonuses")]
-        public bool ReadBonuses { get; set; }
-
-        [JsonPropertyName("linkDeal")]
-        public bool LinkDeal { get; set; }
-
-        [JsonPropertyName("takeup")]
-        public bool Takeup { get; set; }
-
-        [JsonPropertyName("useTemplate")]
-        public bool UseTemplate { get; set; }
-
-        [JsonPropertyName("toTemplate")]
-        public bool ToTemplate { get; set; }
-
-        [JsonPropertyName("changeOwner")]
-        public bool ChangeOwner { get; set; }
-
-        [JsonPropertyName("pause")]
-        public bool Pause { get; set; }
-
-        [JsonPropertyName("resume")]
-        public bool Resume { get; set; }
-
-        [JsonPropertyName("cancel")]
-        public bool Cancel { get; set; }
-
-        [JsonPropertyName("expire")]
-        public bool Expire { get; set; }
-
-        [JsonPropertyName("done")]
-        public bool Done { get; set; }
-
-        [JsonPropertyName("renew")]
-        public bool Renew { get; set; }
-
-        [JsonPropertyName("rateVoteAvailable")]
-        public bool RateVoteAvailable { get; set; }
-
-        [JsonPropertyName("rateVoteWillBeAvailable")]
-        public bool RateVoteWillBeAvailable { get; set; }
-
-        [JsonPropertyName("rateResultsAvailable")]
-        public bool RateResultsAvailable { get; set; }
-
-        [JsonPropertyName("rateCustomVoteAvailable")]
-        public bool RateCustomVoteAvailable { get; set; }
-
-        [JsonPropertyName("rateChangeVoteAvailable")]
-        public bool RateChangeVoteAvailable { get; set; }
-
-        [JsonPropertyName("rateSeeVote")]
-        public bool RateSeeVote { get; set; }
-
-        [JsonPropertyName("rateWidgetAvailable")]
-        public bool RateWidgetAvailable { get; set; }
-
-        [JsonPropertyName("reminderRecipient")]
-        public bool ReminderRecipient { get; set; }
-
-        [JsonPropertyName("editMainInfo")]
-        public bool EditMainInfo { get; set; }
-
-        [JsonPropertyName("changeContractor")]
-        public bool ChangeContractor { get; set; }
-
-        [JsonPropertyName("addNewNegotiationItem")]
-        public bool AddNewNegotiationItem { get; set; }
-
-        [JsonPropertyName("deleteNegotiationItem")]
-        public bool DeleteNegotiationItem { get; set; }
-
-        [JsonPropertyName("editNegotiationItemVersion")]
-        public bool EditNegotiationItemVersion { get; set; }
-    }
-
-    public class Activity
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public DateTime Value { get; set; }
-    }
-
-    public class ActualStart
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public DateTime Value { get; set; }
-    }
-
-    public class ActualWork
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public int Value { get; set; }
-    }
-
-    public class AttachesInfo
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("imageFiles")]
-        public List<object> ImageFiles { get; set; }
-
-        [JsonPropertyName("imageFilesCount")]
-        public int ImageFilesCount { get; set; }
-
-        [JsonPropertyName("audioFiles")]
-        public List<object> AudioFiles { get; set; }
-
-        [JsonPropertyName("audioFilesCount")]
-        public int AudioFilesCount { get; set; }
-
-        [JsonPropertyName("otherFiles")]
-        public List<object> OtherFiles { get; set; }
-
-        [JsonPropertyName("otherFilesCount")]
-        public int OtherFilesCount { get; set; }
-    }
-
-    public class Category130CustomFieldPlanFakt
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("planned")]
-        public int Planned { get; set; }
-
-        [JsonPropertyName("actual")]
-        public int Actual { get; set; }
-    }
-
-    public class RootTaskMPResponse
-    {
-        [JsonPropertyName("meta")]
-        public Meta Meta { get; set; }
-
-        [JsonPropertyName("data")]
-        public TaskResponse Data { get; set; }
-    }
-
-    public class StatusChangeTime
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public DateTime Value { get; set; }
-    }
-
-    public class Subject
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-    }
-
-    public class TimeCreated
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public DateTime Value { get; set; }
-    }
-
-    public class UserCreated
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-    }
-
-    public class WorkedOffTimeTotal
-    {
-        [JsonPropertyName("contentType")]
-        public string ContentType { get; set; }
-
-        [JsonPropertyName("value")]
-        public int Value { get; set; }
-    }
-
 }

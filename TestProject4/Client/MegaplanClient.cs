@@ -16,18 +16,18 @@ namespace AutotestAPI.Client
             req.AddJsonBody(body);
             return _client.Execute<AccessTokenResponse>(req);
         }
-        public RestResponse<RootTaskMPResponse> CreateTask(TaskCreateRequest body, string token)
+        public RestResponse<BasicTaskResponse> CreateTask(TaskCreateRequest body, string token)
         {
             var req = new RestRequest("api/v3/task", Method.Post);
             req.AddHeader("Authorization", "Bearer " + token);
             req.AddJsonBody(body);
-            return _client.Execute<RootTaskMPResponse>(req);
+            return _client.Execute<BasicTaskResponse>(req);
         }
-        public RestResponse<RootTaskMPResponse> OpenTaskId(int id, string token)
+        public RestResponse<BasicTaskResponse> OpenTaskId(int id, string token)
         {
             var req = new RestRequest($"api/v3/task/{id}", Method.Get);
             req.AddHeader("Authorization", "Bearer " + token);
-            return _client.Execute<RootTaskMPResponse>(req);
+            return _client.Execute<BasicTaskResponse>(req);
         }
     }
 }
