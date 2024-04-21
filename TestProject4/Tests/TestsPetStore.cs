@@ -1,7 +1,10 @@
-﻿using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-using Newtonsoft.Json;
+﻿using AutotestAPI.Client;
+using AutotestAPI.Framework;
+using AutotestAPI.Entities.PetStore.Request;
+using AutotestAPI.Entities.PetStore.Responses;
+using static AutotestAPI.Framework.EnumAssertion;
 
-namespace AutotestAPI
+namespace AutotestAPI.Tests
 {
     public class TestsPetStore
     {
@@ -12,10 +15,11 @@ namespace AutotestAPI
         [Test]
         public void TestDeleteUserPetStore()
         {
+            //arrange
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var createUserRequest = new List<CreateUserPSRequest>
+            var createUserRequest = new List<CreateUserRequest>
             {
-                new CreateUserPSRequest
+                new CreateUserRequest
                 {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -26,7 +30,7 @@ namespace AutotestAPI
                 Phone = GenerationData.GenerationMobilePhone(),
                 UserStatus = 0
                 },
-                new CreateUserPSRequest
+                new CreateUserRequest
                 {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -38,11 +42,13 @@ namespace AutotestAPI
                 UserStatus = 0
                 }
             };
-            client.CreateWithListUserPS(createUserRequest);
-            client.GetUserPS(createUserRequest[0].Username);
-            client.DeleteUserPS(createUserRequest[0].Username);
-            var respFinel = client.GetUserPS(createUserRequest[0].Username);
-            AssertionHelper.ChecksStatus(respFinel, 404);
+            ///act
+            client.CreateWithListUser(createUserRequest);
+            client.GetUser(createUserRequest[0].Username);
+            client.DeleteUser(createUserRequest[0].Username);
+            var respFinel = client.GetUser(createUserRequest[0].Username);
+            ///assert
+            Framework.AssertionHelper.ChecksStatus(respFinel, 404);
         }
         /// <summary>
         /// Тестовое задание 3
@@ -52,7 +58,7 @@ namespace AutotestAPI
         public void TestGetUserPetStore()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var createUserRequest = new CreateUserPSRequest
+            var createUserRequest = new CreateUserRequest
             {
                 Id = GenerationData.GenerationInt(4),
                 Username = GenerationData.GenerationString(6),
@@ -63,10 +69,11 @@ namespace AutotestAPI
                 Phone = GenerationData.GenerationMobilePhone(),
                 UserStatus = 0
             };
-            client.CreateUserPS(createUserRequest);
-            var getResp = client.GetUserPS(createUserRequest.Username);
-            AssertionHelper.CheckParametrUserPS(createUserRequest, getResp.Data);
-            AssertionHelper.ChecksStatus(getResp, 200);
+            client.CreateUser(createUserRequest);
+            var getResp = client.GetUser(createUserRequest.Username);
+            //Console.WriteLine(JsonConvert.SerializeObject(createUserResp.Data));
+            Validators.PetStoreValidator.CheckParametrUser(createUserRequest, getResp.Data);
+            Framework.AssertionHelper.ChecksStatus(getResp, 200);
         }
         /// <summary>
         /// Тестовое задание 4
@@ -76,11 +83,11 @@ namespace AutotestAPI
         public void TestGetPetParametr()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var resp = client.GetPetFindByStatusPS("available");
-            AssertionHelper.ChecksStatus(resp);
+            var resp = client.GetPetFindByStatus(Status.available);
+            Framework.AssertionHelper.ChecksStatus(resp);
             var idPet = resp.Data[GenerationData.GenerationInt(1)].Id;
-            var respPetId = client.GetPetIdPS(idPet);
-            AssertionHelper.ChecksStatus(respPetId);
+            var respPetId = client.GetPetId(idPet);
+            Framework.AssertionHelper.ChecksStatus(respPetId);
             Assert.IsTrue(respPetId.Data.Id == idPet, $"Id не совпадает");
             Assert.IsTrue(respPetId.Data.Status == "available", $"Status не совпадает");
         }
@@ -92,9 +99,14 @@ namespace AutotestAPI
         public void TestGetPetByAbsentId()
         {
             var client = new PetStoreClient("https://petstore.swagger.io");
-            var resp = client.GetPetIdPS((GenerationData.GenerationLong(18)));
-            AssertionHelper.ChecksStatus(resp, 404);
-            AssertionHelper.CheckErrorMessegPS(resp.Data,1, "error", "Pet not found");
+            var resp = client.GetPetId(GenerationData.GenerationLong(18));
+            Framework.AssertionHelper.ChecksStatus(resp, 404);
+            Validators.PetStoreValidator.CheckErrorMesseg(resp.Data, new AnswerResponse
+            {
+                Code = 1,
+                Type = "error",
+                Message = "Pet not found"
+            });
         }
     }
 }

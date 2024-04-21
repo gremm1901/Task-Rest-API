@@ -1,4 +1,4 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.reqres.Requests
 {
     public class RegisterRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace AutotestAPI
+﻿namespace AutotestAPI.Entities.StarWars.Responses
 {
     public class AllStarshipsResponse
     {
