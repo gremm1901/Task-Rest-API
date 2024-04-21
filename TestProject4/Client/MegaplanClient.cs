@@ -28,7 +28,6 @@ namespace AutotestAPI.Client
         public RestResponse<BasicTaskResponse> CreateTask(TaskCreateRequest body)
         {
             var req = new RestRequest("api/v3/task", Method.Post);
-            //req.AddHeader("Authorization", "Bearer " + token);
             req.AddJsonBody(body);
             return _client.Execute<BasicTaskResponse>(req);
         }
@@ -40,7 +39,6 @@ namespace AutotestAPI.Client
         public RestResponse<BasicTaskResponse> OpenTaskId(int id)
         {
             var req = new RestRequest($"api/v3/task/{id}", Method.Get);
-            //req.AddHeader("Authorization", "Bearer " + token);
             return _client.Execute<BasicTaskResponse>(req);
         }
     }
