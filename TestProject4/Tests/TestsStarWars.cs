@@ -1,4 +1,5 @@
 using AutotestAPI.Client;
+using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
 
 namespace AutotestAPI.Tests
 {
@@ -11,7 +12,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetPeoplePage(2);
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllPeoplePage
         [Test]
@@ -19,7 +20,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllPeoplePage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //ֲûחמג לועמהא GetFilmsPage
@@ -28,7 +29,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetFilmsPage(2);
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllFilmsPage
         [Test]
@@ -36,7 +37,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllFilmsPage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //ֲûחמג לועמהא GetVehiclesPage
@@ -45,7 +46,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetVehiclesPage(2);
-            Framework.AssertionHelper.ChecksStatus(resp, 404);
+            AssertionHelper.ChecksStatus(resp, 404);
         }
         //ֲûחמג לועמהא GetAllVehiclesPage
         [Test]
@@ -53,7 +54,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllVehiclesPage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //ֲûחמג לועמהא GetStarshipsPage
@@ -62,7 +63,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetStarshipsPage(2);
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllGetStarshipsPage
         [Test]
@@ -70,7 +71,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllStarshipsPage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //ֲûחמג לועמהא GetPlanetPage
@@ -87,7 +88,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllPlanetPage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
 
         //ֲûחמג לועמהא GetSpeciesPage
@@ -96,7 +97,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetSpeciesPage(2);
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא GetAllSpeciesPage
         [Test]
@@ -104,7 +105,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient("https://swapi.dev");
             var resp = client.GetAllSpeciesPage();
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
     }
 }

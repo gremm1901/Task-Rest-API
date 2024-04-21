@@ -1,7 +1,8 @@
 ﻿using AutotestAPI.Client;
 using AutotestAPI.Entities.Megaplan.Requests;
 using AutotestAPI.Framework;
-using Newtonsoft.Json;
+using AutotestAPI.Validators;
+using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
 
 namespace AutotestAPI.Tests
 {
@@ -10,6 +11,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetPetByAbsentId()
         {
+            //arrange
             var createUserRequest = new AuthEmployeeRequest
             {
                 Username = "grisha.manuk1",
@@ -27,16 +29,15 @@ namespace AutotestAPI.Tests
                 IsTemplate = false,
                 IsUrgent = false
             };
-
+            //act
             var client = new MegaplanClient("https://ra.megaplan.ru");
-            var resp = client.AuthEmployee(createUserRequest);
-            Framework.AssertionHelper.ChecksStatus(resp);
-
-            var respCreateTask = client.CreateTask(createTaskRequest, resp.Data.AccessToken);
-            Framework.AssertionHelper.ChecksStatus(respCreateTask);
-
-            var OpenTask = client.OpenTaskId(Convert.ToInt32(respCreateTask.Data.Data.Id), resp.Data.AccessToken);
-            Framework.AssertionHelper.ChecksStatus(OpenTask);
+            client.AuthEmployee(createUserRequest);
+            var respCreateTask = client.CreateTask(createTaskRequest);
+            var OpenTask = client.OpenTaskId(Convert.ToInt32(respCreateTask.Data.Data.Id));
+            //Assert
+            MegaplanValidator.CheckTask(respCreateTask.Data, OpenTask.Data);
+            MegaplanValidator.CheckTaskName(respCreateTask.Data, OpenTask.Data);
+            AssertionHelper.ChecksStatus(OpenTask);
         }
     }
 }

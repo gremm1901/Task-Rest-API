@@ -10,23 +10,37 @@ namespace AutotestAPI.Client
         {
             _client = new RestClient(url);
         }
-        public RestResponse<AccessTokenResponse> AuthEmployee(AuthEmployeeRequest body)
+        /// <summary>
+        /// Авторизация сотрудника
+        /// </summary>
+        /// <param name="body">Данные сотрудника для входа</param>
+        public void AuthEmployee(AuthEmployeeRequest body)
         {
             var req = new RestRequest("api/v3/auth/access_token", Method.Post);
             req.AddJsonBody(body);
-            return _client.Execute<AccessTokenResponse>(req);
+            _client.AddDefaultHeader("Authorization", "Bearer " + _client.Execute<AccessTokenResponse>(req).Data.AccessToken);
         }
-        public RestResponse<BasicTaskResponse> CreateTask(TaskCreateRequest body, string token)
+        /// <summary>
+        /// Создание задачи
+        /// </summary>
+        /// <param name="body">Параметры задачи</param>
+        /// <returns></returns>
+        public RestResponse<BasicTaskResponse> CreateTask(TaskCreateRequest body)
         {
             var req = new RestRequest("api/v3/task", Method.Post);
-            req.AddHeader("Authorization", "Bearer " + token);
+            //req.AddHeader("Authorization", "Bearer " + token);
             req.AddJsonBody(body);
             return _client.Execute<BasicTaskResponse>(req);
         }
-        public RestResponse<BasicTaskResponse> OpenTaskId(int id, string token)
+        /// <summary>
+        /// Открыть задачу
+        /// </summary>
+        /// <param name="id">Номер задачи</param>
+        /// <returns></returns>
+        public RestResponse<BasicTaskResponse> OpenTaskId(int id)
         {
             var req = new RestRequest($"api/v3/task/{id}", Method.Get);
-            req.AddHeader("Authorization", "Bearer " + token);
+            //req.AddHeader("Authorization", "Bearer " + token);
             return _client.Execute<BasicTaskResponse>(req);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using AutotestAPI.Entities.PetStore.Request;
 using AutotestAPI.Entities.PetStore.Responses;
-using static AutotestAPI.Framework.EnumAssertion;
 
 namespace AutotestAPI.Client
 {
@@ -58,7 +57,7 @@ namespace AutotestAPI.Client
         /// </summary>
         /// <param name="status">статусу "available","pending","sold"</param>
         /// <returns></returns>
-        public RestResponse<List<PetResponse>> GetPetFindByStatus(Status status)
+        public RestResponse<List<PetResponse>> GetPetFindByStatus(string status)
         {
             var req = new RestRequest($"/v2/pet/findByStatus?status={status}", Method.Get);
             return _client.Execute<List<PetResponse>>(req);
