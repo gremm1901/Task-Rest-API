@@ -78,6 +78,61 @@
             return Convert.ToInt32(str);
         }
         /// <summary>
+        /// Генерация случайного дня
+        /// </summary>
+        /// <param name="length">длинна числа</param>
+        /// <returns></returns>
+        public static int GenerationDay()
+        {
+            int day = 28;
+            int randomInt = GenerationInt(2);
+            if (randomInt < day) 
+            {
+                return randomInt;
+            }
+            else 
+            {
+                return GenerationDay();
+            }
+        }
+        /// <summary>
+        /// Генерация случайного месяца
+        /// </summary>
+        /// <param name="length">длинна числа</param>
+        /// <returns></returns>
+        public static int GenerationMouth()
+        {
+            int month = 12;
+            int randomInt = GenerationInt(2);
+            if (randomInt < month)
+            {
+                return randomInt;
+            }
+            else
+            {
+                return GenerationMouth();
+            }
+        }
+        /// <summary>
+        /// Генерация случайного месяца
+        /// </summary>
+        /// <param name="length">длинна числа</param>
+        /// <returns></returns>
+        public static int GenerationYear()
+        {
+            int year = 2024;
+            int notYear = 3000;
+            int randomInt = GenerationInt(24);
+            if (randomInt > year && randomInt<notYear)
+            {
+                return randomInt;
+            }
+            else
+            {
+                return GenerationYear();
+            }
+        }
+        /// <summary>
         /// Генерация случайного положительного числа, длиною 18 символов
         /// </summary>
         /// <param name="length">длинна числа</param>

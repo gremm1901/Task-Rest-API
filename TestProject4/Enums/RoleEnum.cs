@@ -2,7 +2,6 @@
 
 namespace AutotestAPI.Enums
 {
-
     /// <summary>
     /// Роли клиентов в PlatziFakeStore
     /// </summary>

@@ -4,6 +4,8 @@ using AutotestAPI.Framework;
 using AutotestAPI.Validators;
 using static AutotestAPI.Enums.RoleEnum;
 using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
+using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
 {
@@ -16,7 +18,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestDeleteUser()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
@@ -39,7 +41,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void DeleteCategories()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createCategoriesRequest = new CreateCategoriesRequest
             {
                 Image = GenerationData.GenerationUrl(13),
@@ -74,7 +76,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void LoginUser()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),

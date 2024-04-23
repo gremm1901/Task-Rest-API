@@ -2,6 +2,8 @@
 using AutotestAPI.Entities.reqres.Requests;
 using AutotestAPI.Framework;
 using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
+using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
 {
@@ -11,7 +13,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestCreatedClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var createClientRequest = new CreateClientRequest
             {
                 Job = GenerationData.GenerationString(10),
@@ -25,7 +27,7 @@ namespace AutotestAPI.Tests
         public void TestResourceList()
         {
 
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.GetResourcePage(2, 3);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -33,7 +35,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestClientPage()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.GetClientPage(2);
             var georgeEdwards = resp.Data.Data.First(p => p.FirstName == "George" && p.LastName == "Edwards");
             AssertionHelper.ChecksStatus(resp);
@@ -42,7 +44,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetClientId()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.GetClientId(2);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -50,7 +52,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestPutUpdateClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.PutUpdateClient(2);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -58,7 +60,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestPutchUpdateClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.PutchUpdateClient(2);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -66,7 +68,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestDeleteClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.DeleteClient(2);
             AssertionHelper.ChecksStatus(resp, 204);
         }
@@ -74,7 +76,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetResourcePage()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.GetResourcePage(1);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -82,7 +84,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestPutUpdateResourceList()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.PutUpdateResourceList(2);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -90,7 +92,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestPutchUpdateResourceList()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.PutchUpdateResourceList(2);
             AssertionHelper.ChecksStatus(resp);
         }
@@ -98,7 +100,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestDeleteResourceList()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.DeleteResourceList(2);
             AssertionHelper.ChecksStatus(resp, 204);
         }
@@ -106,7 +108,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestCreateSessionClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var createClientRequest = new LoginRequest
             {
                 Name = GenerationData.GenerationString(10),
@@ -120,7 +122,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestRegisterClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var createClientRequest = new RegisterRequest
             {
                 Name = GenerationData.GenerationString(10),
@@ -134,7 +136,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestLogoutClient()
         {
-            var client = new ReqresClient("https://reqres.in");
+            var client = new ReqresClient(EnumHelper.GetDescription(Reqres));
             var resp = client.LogoutClient();
             AssertionHelper.ChecksStatus(resp, 200);
         }
