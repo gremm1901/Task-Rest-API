@@ -8,11 +8,11 @@ namespace AutotestAPI.Enums
     public enum EmployeeEnum
     {
         [Description("1000237")]
-        Employee1 = 0,
+        EmployeeTest = 0,
         [Description("1000189")]
-        Employee2 = 1,
+        EmployeeProstoy = 1,
         [Description("1000157")]
-        Employee3 = 2
+        EmployeeDirector = 2
     };
 
 }

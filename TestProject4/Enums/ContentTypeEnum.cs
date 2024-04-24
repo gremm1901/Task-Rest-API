@@ -4,7 +4,7 @@ namespace AutotestAPI.Enums
 {
     /// <summary>
     /// Типы сущностей
-    /// </summary>
+    /// </summary>MassActionDelete
     public enum ContentTypeEnum
     {
         [Description("Employee")]
@@ -24,7 +24,15 @@ namespace AutotestAPI.Enums
         [Description("password")]
         Password = 7,
         [Description("DateOnly")]
-        DateOnlyType = 8
+        DateOnlyType = 8,
+        [Description("CommentCreateActionRequest")]
+        CommentCreate = 9,
+        [Description("Comment")]
+        Comment = 10,
+        [Description("DateInterval")]
+        DateInterval = 11,
+        [Description("MassActionDelete")]
+        MassActionDelete = 112
     };
 
 }

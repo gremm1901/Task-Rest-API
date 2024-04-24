@@ -9,6 +9,6 @@
         public List<object> Errors { get; set; }
 
         [JsonPropertyName("pagination")]
-        public List<object> Pagination { get; set; }
+        public List<PaginationResponse> Pagination { get; set; }
     }
 }

@@ -266,7 +266,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int ShouldVisasCount { get; set; }
 
         [JsonPropertyName("comments")]
-        public List<object> Comments { get; set; }
+        public List<ComentResponse> Comments { get; set; }
 
         [JsonPropertyName("commentsCount")]
         public int CommentsCount { get; set; }

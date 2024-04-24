@@ -183,7 +183,7 @@
         public int MessagesCount { get; set; }
 
         [JsonPropertyName("lastComment")]
-        public object LastComment { get; set; }
+        public ComentResponse LastComment { get; set; }
 
         [JsonPropertyName("lastCommentTimeCreated")]
         public object LastCommentTimeCreated { get; set; }
@@ -204,7 +204,7 @@
         public WorkedOffTimeTotalResponse WorkedOffTimeTotal { get; set; }
 
         [JsonPropertyName("comments")]
-        public List<object> Comments { get; set; }
+        public List<ComentResponse> Comments { get; set; }
 
         [JsonPropertyName("commentsCount")]
         public int CommentsCount { get; set; }
