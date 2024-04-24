@@ -1,6 +1,6 @@
 ﻿using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
-namespace AutotestAPI.Framework
+namespace AutotestAPI.Helpers
 {
     public class EnumHelper
     {

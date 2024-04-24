@@ -1,6 +1,6 @@
 using AutotestAPI.Client;
-using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
-using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
 using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
@@ -82,7 +82,7 @@ namespace AutotestAPI.Tests
         {
             var client = new StarWarsClient(EnumHelper.GetDescription(StarWars));
             var resp = client.GetPlanetPage(2);
-            Framework.AssertionHelper.ChecksStatus(resp);
+            AssertionHelper.ChecksStatus(resp);
         }
         //ֲûחמג לועמהא AllGetPlanetPage
         [Test]

@@ -2,8 +2,8 @@
 using AutotestAPI.Framework;
 using AutotestAPI.Entities.PetStore.Request;
 using AutotestAPI.Entities.PetStore.Responses;
-using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
-using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
 using static AutotestAPI.Enums.DomenEnum;
 using static AutotestAPI.Enums.StatusEnum;
 using AutotestAPI.Validators;

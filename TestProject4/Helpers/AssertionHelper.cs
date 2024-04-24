@@ -1,4 +1,4 @@
-﻿namespace AutotestAPI.Framework
+﻿namespace AutotestAPI.Helpers
 {
     /// <summary>
     /// Класс в котором собраны вспомогательные функции

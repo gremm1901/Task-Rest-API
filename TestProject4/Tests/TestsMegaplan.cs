@@ -2,8 +2,8 @@
 using AutotestAPI.Entities.Megaplan.Requests;
 using AutotestAPI.Framework;
 using AutotestAPI.Validators;
-using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
-using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
 using static AutotestAPI.Enums.DomenEnum;
 using static AutotestAPI.Enums.ContentTypeEnum;
 using static AutotestAPI.Enums.EmployeeEnum;

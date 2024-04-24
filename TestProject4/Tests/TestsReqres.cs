@@ -1,8 +1,8 @@
 ﻿using AutotestAPI.Client;
 using AutotestAPI.Entities.reqres.Requests;
 using AutotestAPI.Framework;
-using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
-using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
 using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests

@@ -3,8 +3,8 @@ using AutotestAPI.Entities.PlatziFakeStore.Requests;
 using AutotestAPI.Framework;
 using AutotestAPI.Validators;
 using static AutotestAPI.Enums.RoleEnum;
-using AssertionHelper = AutotestAPI.Framework.AssertionHelper;
-using EnumHelper = AutotestAPI.Framework.EnumHelper;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
 using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
