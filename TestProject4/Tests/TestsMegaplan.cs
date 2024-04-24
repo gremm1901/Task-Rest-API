@@ -14,7 +14,7 @@ namespace AutotestAPI.Tests
     public class TestsMegaplan
     {
         [Test]
-        public void TestGetPetByAbsentId()
+        public void CreateTask()
         {
             //arrange
             var createUserRequest = new AuthEmployeeRequest
@@ -54,13 +54,22 @@ namespace AutotestAPI.Tests
                 Password = "grisha.manuk1",
                 GrantType = EnumHelper.GetDescription(Password)
             };
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
-            client.AuthEmployee(createUserRequest);
-            var file = client.AddFile();
 
+            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            client.AuthEmployee(createUserRequest); 
+            var file = client.AddFile();
+            //Есть ли смысл создать отдельный файл в котором будут методы в которых будет весь этот код по созданию
             var createProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
+                Category165CustomFieldFayl = new List<Category165CustomFieldFaylRequest>
+                {
+                    new Category165CustomFieldFaylRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(FileType),
+                        Id = file.Data.Data[0].Id
+                    }
+                },
                 Category165CustomFieldBolshoeChislo = GenerationData.GenerationInt(5).ToString(),
                 Category165CustomFieldChislo = GenerationData.GenerationInt(3),
                 Category165CustomFieldDaNet = true,
@@ -68,14 +77,6 @@ namespace AutotestAPI.Tests
                 {
                     ContentType = EnumHelper.GetDescription(DateTimeType),
                     Value = DateTime.Now
-                },
-                Category165CustomFieldFayl = new List<Category165CustomFieldFaylRequest>
-                {
-                    new Category165CustomFieldFaylRequest
-                    {
-                        ContentType = EnumHelper.GetDescription(FileType),
-                        Id = file.Data.Id
-                    }
                 },
                 Category165CustomFieldPlanFakt = new Category165CustomFieldPlanFaktRequest
                 {
@@ -87,15 +88,7 @@ namespace AutotestAPI.Tests
                     ContentType = EnumHelper.GetDescription(Employee),
                     Id = EnumHelper.GetDescription(Employee1)
                 },
-                Category165CustomFieldViborIzSpiska = GenerationData.GenerationInt(3).ToString(),
-                Attaches = new List<AttachRequest>
-                {
-                    new AttachRequest
-                    {
-                        ContentType = EnumHelper.GetDescription(FileType),
-                        Id = file.Data.Id
-                    }
-                },
+                Category165CustomFieldViborIzSpiska = "1",//Вынести в Enum
                 Auditors = new List<AuditorRequest>
                 {
                     new AuditorRequest
@@ -110,13 +103,13 @@ namespace AutotestAPI.Tests
                     ContentType = EnumHelper.GetDescription(ContractorHuman),
                     Id = EnumHelper.GetDescription(Human)
                 },
-                //Deadline = new DeadlineRequest
-                //{
-                //    ContentType = EnumHelper.GetDescription(DateOnlyType),
-                //    Day = GenerationData.GenerationDay(),
-                //    Month = GenerationData.GenerationMouth(),
-                //    Year = GenerationData.GenerationYear(),
-                //},
+                Deadline = new DeadlineRequest
+                {
+                    ContentType = EnumHelper.GetDescription(DateOnlyType),
+                    Day = DateTime.Now.Day.CompareTo(2),
+                    Month = DateTime.Now.Month.CompareTo(1),
+                    Year = DateTime.Now.Year,
+                },
                 Executors = new List<ExecutorRequest>
                 {
                     new ExecutorRequest
@@ -127,21 +120,26 @@ namespace AutotestAPI.Tests
                 },
                 KpiStart = GenerationData.GenerationInt(1),
                 KpiUnit = GenerationData.GenerationString(3),
-
+                Owner = new OwnerRequest 
+                {
+                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumHelper.GetDescription(Employee3)
+                },
+                Statement = "<p>asdasd</p>",
                 Responsible = new ResponsibleRequest
                 {
-                    Id = "1000157",
-                    ContentType = "Employee",
+                    Id = EnumHelper.GetDescription(Employee3),
+                    ContentType = EnumHelper.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
             //act
             var respCreateProjec = client.CreateProject(createProjectRequest);
             AssertionHelper.ChecksStatus(respCreateProjec);
-            Console.WriteLine(respCreateProjec.Data.Data.Id);
             var OpenProjec = client.OpenProjectId(Convert.ToInt32(respCreateProjec.Data.Data.Id));
             //Assert
             AssertionHelper.ChecksStatus(OpenProjec);
+            MegaplanValidator.CheckProject(respCreateProjec.Data, OpenProjec.Data);
         }
     }
 }

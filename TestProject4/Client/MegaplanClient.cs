@@ -1,6 +1,8 @@
 ﻿using AutotestAPI.Entities.Megaplan.Requests;
 using AutotestAPI.Entities.Megaplan.Responses;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AutotestAPI.Client
 {
@@ -68,11 +70,11 @@ namespace AutotestAPI.Client
         /// </summary>
         /// <param name="id">Номер проекта</param>
         /// <returns></returns>
-        public RestResponse<FileResponse> AddFile()
+        public RestResponse<FileBaseResponse> AddFile()
         {
             var req = new RestRequest($"api/file", Method.Post);
-            req.AddFile("receipt[receipt_file]", File.ReadAllBytes(@"C:\Users\grish\Downloads\123.jpeg"), Path.GetFileName(@"C:\Users\grish\Downloads\123.jpeg"), "application/octet-stream");
-            return _client.Execute<FileResponse>(req);
+            req.AddFile("files[]", File.ReadAllBytes(@"C:\Users\grish\Downloads\123.jpeg"), Path.GetFileName(@"C:\Users\grish\Downloads\123.jpeg"), "multipart/form-data");
+            return _client.Execute<FileBaseResponse>(req);
         }
     }
 }

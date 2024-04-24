@@ -9,13 +9,13 @@
         public string Id { get; set; }
 
         [JsonPropertyName("humanNumber")]
-        public int HumanNumber { get; set; }
+        public long HumanNumber { get; set; }
 
         [JsonPropertyName("type")]
-        public Type Type { get; set; }
+        public TypeResponse Type { get; set; }
 
         [JsonPropertyName("responsibles")]
-        public List<ResponsibleResponse> Responsibles { get; set; }
+        public List<ResponsiblesResponse> Responsibles { get; set; }
 
         [JsonPropertyName("responsiblesCount")]
         public int ResponsiblesCount { get; set; }

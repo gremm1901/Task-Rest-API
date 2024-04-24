@@ -18,7 +18,7 @@
         public string Extension { get; set; }
 
         [JsonPropertyName("size")]
-        public int Size { get; set; }
+        public long Size { get; set; }
 
         [JsonPropertyName("subject")]
         public object Subject { get; set; }
