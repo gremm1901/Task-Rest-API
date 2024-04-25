@@ -8,6 +8,7 @@ using static AutotestAPI.Enums.DomenEnum;
 using static AutotestAPI.Enums.ContentTypeEnum;
 using static AutotestAPI.Enums.EmployeeEnum;
 using static AutotestAPI.Enums.ContractHumanEnum;
+using Newtonsoft.Json;
 
 namespace AutotestAPI.Tests
 {
@@ -41,7 +42,7 @@ namespace AutotestAPI.Tests
             var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateTask = client.CreateTask(createTaskRequest);
-            var OpenTask = client.OpenTaskId(Convert.ToInt32(respCreateTask.Data.Data.Id));
+            var OpenTask = client.OpenTaskId(respCreateTask.Data.Data.Id);
             //Assert
             MegaplanValidator.CheckTask(respCreateTask.Data, OpenTask.Data);
             MegaplanValidator.CheckTaskName(respCreateTask.Data, OpenTask.Data);
@@ -342,6 +343,102 @@ namespace AutotestAPI.Tests
             var renameProjectResp = client.UpdateProject(renameProject, respCreateProjec.Data.Data.Id);
             AssertionHelper.ChecksStatus(renameProjectResp);
             MegaplanValidator.CheckProjectNameСhanges(respCreateProjec.Data, renameProjectResp.Data);
+        }
+        /// <summary>
+        /// Созданиее массовой задачи и изменение сути задачи
+        /// </summary>
+        [Test]
+        public void CreateMassTaskAndChange()
+        {
+            //arrange
+            var createUserRequest = new AuthEmployeeRequest
+            {
+                Username = "grisha.manuk1",
+                Password = "grisha.manuk1",
+                GrantType = EnumHelper.GetDescription(Password)
+            };
+            var createTaskRequest = new TaskCreateRequest
+            {
+                ContentType = EnumHelper.GetDescription(TaskType),
+                Name = GenerationData.GenerationString(10),
+                Executors = new List<ExecutorRequest>
+                {
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeTest)
+                    },
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeProstoy)
+                    },
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeDirector)
+                    },
+                },
+                IsGroup = true,
+                Statement = GenerationData.GenerationString(12),
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                IsTemplate = false,
+                IsUrgent = false
+            };
+
+            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            client.AuthEmployee(createUserRequest);
+            var createTask = client.CreateTask(createTaskRequest);
+            AssertionHelper.ChecksStatus(createTask);
+            Console.WriteLine(createTask.Data.Data.Id);
+
+            var updateTask = new TaskCreateRequest
+            {
+                ContentType = EnumHelper.GetDescription(TaskType),
+                Name = GenerationData.GenerationString(10),
+                Executors = new List<ExecutorRequest>
+                {
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeTest)
+                    },
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeProstoy)
+                    },
+                    new ExecutorRequest
+                    {
+                        ContentType = EnumHelper.GetDescription(Employee),
+                        Id = EnumHelper.GetDescription(EmployeeDirector)
+                    },
+                },
+                IsGroup = true,
+                Statement = GenerationData.GenerationString(12),
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                IsTemplate = false,
+                IsUrgent = false,
+                Id = createTask.Data.Data.Id
+            };
+            var updateTaskResp = client.UpdateTask(updateTask, createTask.Data.Data.Id);
+            Console.WriteLine(updateTaskResp.Content);
+            AssertionHelper.ChecksStatus(updateTaskResp);
+
+            Console.WriteLine(updateTask.Statement);
+            Console.WriteLine(createTaskRequest.Statement);
+            
+            var openTaskOsn = client.OpenTaskId(createTask.Data.Data.Id);
+            var openTaskDop = client.OpenTaskId(createTask.Data.Data.SubTasks[0].Id);
+            MegaplanValidator.CheckTaskStatement(openTaskDop.Data, openTaskOsn.Data);
         }
     }
 }

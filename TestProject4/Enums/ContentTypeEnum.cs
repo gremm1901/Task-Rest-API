@@ -16,7 +16,7 @@ namespace AutotestAPI.Enums
         [Description("File")]
         FileType = 3,
         [Description("Task")]
-        Task = 4,
+        TaskType = 4,
         [Description("DateTime")]
         DateTimeType = 5,
         [Description("ResourceValue")]

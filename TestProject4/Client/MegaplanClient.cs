@@ -39,7 +39,7 @@ namespace AutotestAPI.Client
         /// </summary>
         /// <param name="id">Номер задачи</param>
         /// <returns></returns>
-        public RestResponse<BasicTaskResponse> OpenTaskId(int id)
+        public RestResponse<BasicTaskResponse> OpenTaskId(string id)
         {
             var req = new RestRequest($"api/v3/task/{id}", Method.Get);
             return _client.Execute<BasicTaskResponse>(req);
@@ -99,11 +99,29 @@ namespace AutotestAPI.Client
             req.AddJsonBody(body);
             return _client.Execute<MassDeleteResponse>(req);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public RestResponse<BasicProjectResponse> UpdateProject(ProjectCreateRequest body, string id)
         {
             var req = new RestRequest($"api/v3/project/{id}", Method.Post);
             req.AddJsonBody(body);
             return _client.Execute<BasicProjectResponse>(req);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public RestResponse<BasicTaskResponse> UpdateTask(TaskCreateRequest body, string id)
+        {
+            var req = new RestRequest($"api/v3/task/{id}", Method.Post);
+            req.AddJsonBody(body);
+            return _client.Execute<BasicTaskResponse>(req);
         }
     }
 }

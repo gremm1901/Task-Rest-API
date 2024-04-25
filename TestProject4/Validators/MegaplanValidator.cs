@@ -16,6 +16,8 @@ namespace AutotestAPI.Validators
             response.Should().BeEquivalentTo(task, options =>
             options.Excluding(o => o.Data.Owner.LastOnline.Value)
                    .Excluding(o => o.Data.LastView)
+                   .Excluding(o => o.Data.Category130CustomFieldTipTekst)
+                   .Excluding(o => o.Data.Category130CustomFieldTipUnikalniyTekst)
                    //.Excluding убрать что либо, если надо убрать большую часть то можно убрать весь параметр и добавить нужные через .Including
                    );
         }
@@ -71,6 +73,18 @@ namespace AutotestAPI.Validators
             response.Should().NotBeEquivalentTo(project, options =>
             options.Excluding(o => o)
             .Including(o => o.Data.Name)
+                   );
+        }
+        /// <summary>
+        /// Проверить только описание Задачи
+        /// </summary>
+        /// <param name="response">Изначальные данные  </param>
+        /// <param name="task">С чем сравнивать</param>
+        public static void CheckTaskStatement(BasicTaskResponse response, BasicTaskResponse task)
+        {
+            response.Should().BeEquivalentTo(task, options =>
+            options.Excluding(o => o)
+            .Including(o => o.Data.Statement)
                    );
         }
     }

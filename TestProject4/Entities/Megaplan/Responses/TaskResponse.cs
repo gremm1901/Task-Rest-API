@@ -35,7 +35,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public object Deadline { get; set; }
 
         [JsonPropertyName("subTasks")]
-        public List<object> SubTasks { get; set; }
+        public List<SubTasksResponse> SubTasks { get; set; }
 
         [JsonPropertyName("subTasksCount")]
         public int SubTasksCount { get; set; }
@@ -409,4 +409,5 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         [JsonPropertyName("calculatedFieldsCount")]
         public int CalculatedFieldsCount { get; set; }
     }
+
 }
