@@ -1,4 +1,5 @@
-﻿using AutotestAPI.Entities.Megaplan.Responses;
+﻿using AutotestAPI.Entities.Megaplan.Requests;
+using AutotestAPI.Entities.Megaplan.Responses;
 using FluentAssertions;
 using System.Threading.Tasks;
 
@@ -85,6 +86,18 @@ namespace AutotestAPI.Validators
             response.Should().BeEquivalentTo(task, options =>
             options.Excluding(o => o)
             .Including(o => o.Data.Statement)
+                   );
+        }
+        /// <summary>
+        /// Проверить только описание Надзадачу
+        /// </summary>
+        /// <param name="response">Изначальные данные  </param>
+        /// <param name="task">С чем сравнивать</param>
+        public static void CheckTaskParent(ParentResponse response, TaskResponse task)
+        {
+            response.Should().BeEquivalentTo(task, options =>
+            options.Excluding(o => o)
+            .Including(o => o.Id)
                    );
         }
     }

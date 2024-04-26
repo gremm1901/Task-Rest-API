@@ -158,7 +158,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int LinksCount { get; set; }
 
         [JsonPropertyName("parent")]
-        public object Parent { get; set; }
+        public ParentResponse Parent { get; set; }
 
         [JsonPropertyName("workedOffTime")]
         public List<object> WorkedOffTime { get; set; }

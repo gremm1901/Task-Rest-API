@@ -100,10 +100,10 @@ namespace AutotestAPI.Client
             return _client.Execute<MassDeleteResponse>(req);
         }
         /// <summary>
-        /// 
+        /// Изменить проект
         /// </summary>
-        /// <param name="body"></param>
-        /// <param name="id"></param>
+        /// <param name="body">Что изменить</param>
+        /// <param name="id">Номер проекта</param>
         /// <returns></returns>
         public RestResponse<BasicProjectResponse> UpdateProject(ProjectCreateRequest body, string id)
         {
@@ -112,10 +112,10 @@ namespace AutotestAPI.Client
             return _client.Execute<BasicProjectResponse>(req);
         }
         /// <summary>
-        /// 
+        /// Изменить задачу
         /// </summary>
-        /// <param name="body"></param>
-        /// <param name="id"></param>
+        /// <param name="body">Что изменить</param>
+        /// <param name="id">Номер задачи</param>
         /// <returns></returns>
         public RestResponse<BasicTaskResponse> UpdateTask(TaskCreateRequest body, string id)
         {

@@ -61,10 +61,21 @@ namespace AutotestAPI.Tests
                 Password = "grisha.manuk1",
                 GrantType = EnumHelper.GetDescription(Password)
             };
+            var createProjRequest = new ProjectCreateRequest
+            {
+                Name = GenerationData.GenerationString(10),
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                IsTemplate = false
+            };
 
             var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest); 
             var file = client.AddFile();
+            var respProj = client.CreateProject(createProjRequest);
             //Есть ли смысл создать отдельный файл в котором будут методы в которых будет весь этот код по созданию
             var createProjectRequest = new ProjectCreateRequest
             {
@@ -132,7 +143,12 @@ namespace AutotestAPI.Tests
                     ContentType = EnumHelper.GetDescription(Employee),
                     Id = EnumHelper.GetDescription(EmployeeDirector)
                 },
-                Statement = "<p>asdasd</p>",
+                Statement = GenerationData.GenerationString(12),
+                Parent = new ParentRequest 
+                {
+                    Id = respProj.Data.Data.Id,
+                    ContentType = EnumHelper.GetDescription(Project)
+                },
                 Responsible = new ResponsibleRequest
                 {
                     Id = EnumHelper.GetDescription(EmployeeDirector),
@@ -345,7 +361,7 @@ namespace AutotestAPI.Tests
             MegaplanValidator.CheckProjectNameСhanges(respCreateProjec.Data, renameProjectResp.Data);
         }
         /// <summary>
-        /// Созданиее массовой задачи и изменение сути задачи
+        /// Созданиее массовой задачи и изменение сути задачи 
         /// </summary>
         [Test]
         public void CreateMassTaskAndChange()
@@ -394,32 +410,64 @@ namespace AutotestAPI.Tests
             client.AuthEmployee(createUserRequest);
             var createTask = client.CreateTask(createTaskRequest);
             AssertionHelper.ChecksStatus(createTask);
-            Console.WriteLine(createTask.Data.Data.Id);
 
             var updateTask = new TaskCreateRequest
             {
                 ContentType = EnumHelper.GetDescription(TaskType),
-                Name = GenerationData.GenerationString(10),
-                Executors = new List<ExecutorRequest>
-                {
-                    new ExecutorRequest
-                    {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeTest)
-                    },
-                    new ExecutorRequest
-                    {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeProstoy)
-                    },
-                    new ExecutorRequest
-                    {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeDirector)
-                    },
-                },
-                IsGroup = true,
+                Attaches = [],
                 Statement = GenerationData.GenerationString(12),
+                Id = createTask.Data.Data.Id
+            };
+            var updateTaskResp = client.UpdateTask(updateTask, createTask.Data.Data.Id);
+            Console.WriteLine(updateTaskResp.Content);
+            AssertionHelper.ChecksStatus(updateTaskResp);
+
+            var openTaskOsn = client.OpenTaskId(createTask.Data.Data.Id);
+            var openTaskDop = client.OpenTaskId(createTask.Data.Data.SubTasks[0].Id);
+            MegaplanValidator.CheckTaskStatement(openTaskDop.Data, openTaskOsn.Data);
+        }
+
+        [Test]
+        public void ChangeParentTask()
+        {
+            //arrange
+            var createUserRequest = new AuthEmployeeRequest
+            {
+                Username = "grisha.manuk1",
+                Password = "grisha.manuk1",
+                GrantType = EnumHelper.GetDescription(Password)
+            };
+            var createParentTaskRequest = new TaskCreateRequest
+            {
+                Name = GenerationData.GenerationString(10),
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                IsTemplate = false,
+                IsUrgent = false
+            };
+            var createParentTwoTaskRequest = new TaskCreateRequest
+            {
+                Name = GenerationData.GenerationString(10),
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                IsTemplate = false,
+                IsUrgent = false
+            };
+            //act
+            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            client.AuthEmployee(createUserRequest);
+            var respCreateParentTask = client.CreateTask(createParentTaskRequest);
+            var respCreateParentTwoTask = client.CreateTask(createParentTwoTaskRequest);
+            //arrange
+            var createTaskRequest = new TaskCreateRequest
+            {
+                Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
                     Id = EnumHelper.GetDescription(EmployeeDirector),
@@ -427,18 +475,38 @@ namespace AutotestAPI.Tests
                 },
                 IsTemplate = false,
                 IsUrgent = false,
-                Id = createTask.Data.Data.Id
+                Parent = new ParentRequest
+                {
+                    ContentType = EnumHelper.GetDescription(TaskType),
+                    Id = respCreateParentTask.Data.Data.Id,
+                }
             };
-            var updateTaskResp = client.UpdateTask(updateTask, createTask.Data.Data.Id);
-            Console.WriteLine(updateTaskResp.Content);
-            AssertionHelper.ChecksStatus(updateTaskResp);
+            //Act
+            var respCreateTask = client.CreateTask(createTaskRequest);
+            AssertionHelper.ChecksStatus(respCreateTask);
+            MegaplanValidator.CheckTaskParent(respCreateTask.Data.Data.Parent, respCreateParentTask.Data.Data);
 
-            Console.WriteLine(updateTask.Statement);
-            Console.WriteLine(createTaskRequest.Statement);
-            
-            var openTaskOsn = client.OpenTaskId(createTask.Data.Data.Id);
-            var openTaskDop = client.OpenTaskId(createTask.Data.Data.SubTasks[0].Id);
-            MegaplanValidator.CheckTaskStatement(openTaskDop.Data, openTaskOsn.Data);
+            var updateParentTask = new TaskCreateRequest
+            {
+                ContentType = EnumHelper.GetDescription(TaskType),
+                Id = respCreateTask.Data.Data.Id,
+                Responsible = new ResponsibleRequest
+                {
+                    Id = EnumHelper.GetDescription(EmployeeDirector),
+                    ContentType = EnumHelper.GetDescription(Employee),
+                },
+                Parent = new ParentRequest
+                {
+                    ContentType = EnumHelper.GetDescription(TaskType),
+                    Id = respCreateParentTwoTask.Data.Data.Id,
+                }
+            };
+
+            var updateTask = client.UpdateTask(updateParentTask, respCreateTask.Data.Data.Id);
+            Console.WriteLine(respCreateTask.Data.Data.Id);
+            AssertionHelper.ChecksStatus(updateTask);
+            MegaplanValidator.CheckTaskParent(updateTask.Data.Data.Parent, respCreateParentTwoTask.Data.Data);
+
         }
     }
 }

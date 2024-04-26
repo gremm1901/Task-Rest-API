@@ -2,6 +2,7 @@
 {
     public class TaskCreateRequest
     {
+        
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("contentType")]
         public string ContentType { get; set; }
@@ -20,7 +21,7 @@
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("parent")]
-        public object Parent { get; set; }
+        public ParentRequest Parent { get; set; }
 
         [JsonPropertyName("isUrgent")]
         public bool IsUrgent { get; set; }
@@ -95,6 +96,7 @@
         [JsonPropertyName("executors")]
         public List<ExecutorRequest> Executors { get; set; }
 
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         [JsonPropertyName("isGroup")]
         public bool IsGroup { get; set; }
 
