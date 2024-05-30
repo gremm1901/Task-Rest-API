@@ -3,7 +3,7 @@ using AutotestAPI.Framework;
 using AutotestAPI.Entities.PetStore.Request;
 using AutotestAPI.Entities.PetStore.Responses;
 using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
-using EnumHelper = AutotestAPI.Helpers.EnumHelper;
+using EnumExtension = AutotestAPI.Helpers.EnumExtension;
 using static AutotestAPI.Enums.DomenEnum;
 using static AutotestAPI.Enums.StatusEnum;
 using AutotestAPI.Validators;
@@ -20,7 +20,7 @@ namespace AutotestAPI.Tests
         public void TestDeleteUserPetStore()
         {
             //arrange
-            var client = new PetStoreClient(EnumHelper.GetDescription(PetStore));
+            var client = new PetStoreClient(EnumExtension.GetDescription(PetStore));
             var createUserRequest = new List<CreateUserRequest>
             {
                 new CreateUserRequest
@@ -61,7 +61,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetUserPetStore()
         {
-            var client = new PetStoreClient(EnumHelper.GetDescription(PetStore));
+            var client = new PetStoreClient(EnumExtension.GetDescription(PetStore));
             var createUserRequest = new CreateUserRequest
             {
                 Id = GenerationData.GenerationInt(4),
@@ -85,8 +85,8 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetPetParametr()
         {
-            var client = new PetStoreClient(EnumHelper.GetDescription(PetStore));
-            var resp = client.GetPetFindByStatus(EnumHelper.GetDescription(Available));
+            var client = new PetStoreClient(EnumExtension.GetDescription(PetStore));
+            var resp = client.GetPetFindByStatus(EnumExtension.GetDescription(Available));
             AssertionHelper.ChecksStatus(resp);
             var idPet = resp.Data[GenerationData.GenerationInt(1)].Id;
             var respPetId = client.GetPetId(idPet);
@@ -101,7 +101,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestGetPetByAbsentId()
         {
-            var client = new PetStoreClient(EnumHelper.GetDescription(PetStore));
+            var client = new PetStoreClient(EnumExtension.GetDescription(PetStore));
             var resp = client.GetPetId(GenerationData.GenerationLong(18));
             AssertionHelper.ChecksStatus(resp, 404);
             PetStoreValidator.CheckErrorMesseg(resp.Data, new AnswerResponse

@@ -10,6 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestData\ContentType.json" />
+    <None Remove="TestData\ProjectMegaplan.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TestData\ContentType.json" />
+    <Compile Include="TestData\ProjectMegaplan.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspose.Drawing" Version="24.5.0" />
+    <PackageReference Include="Aspose.PDF" Version="24.5.1" />
+    <PackageReference Include="Aspose.Words" Version="24.5.0" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="NUnit" Version="3.13.3" />
