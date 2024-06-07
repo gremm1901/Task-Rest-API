@@ -2,7 +2,7 @@
 
 namespace AutotestAPI.Helpers
 {
-    public class EnumHelper
+    public class EnumExtension
     {
         /// <summary>
         /// Получить дескрипшен из Enum

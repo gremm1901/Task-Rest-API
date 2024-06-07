@@ -4,7 +4,7 @@ using AutotestAPI.Framework;
 using AutotestAPI.Validators;
 using static AutotestAPI.Enums.RoleEnum;
 using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
-using EnumHelper = AutotestAPI.Helpers.EnumHelper;
+using EnumExtension = AutotestAPI.Helpers.EnumExtension;
 using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
@@ -18,14 +18,14 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestDeleteUser()
         {
-            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
+            var client = new PlatziFakeStoreClient(EnumExtension.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
                 Email = GenerationData.GenerationEmail(),
                 Name = GenerationData.GenerationString(13),
                 Password = GenerationData.GenerationString(13),
-                Role = EnumHelper.GetDescription(Admin),
+                Role = EnumExtension.GetDescription(Admin),
             };
             var resp = client.CreateUsers(createUserRequest);
             var respUserId = client.GetUsersId(resp.Data.Id);
@@ -41,7 +41,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void DeleteCategories()
         {
-            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
+            var client = new PlatziFakeStoreClient(EnumExtension.GetDescription(PlatziFakeStore));
             var createCategoriesRequest = new CreateCategoriesRequest
             {
                 Image = GenerationData.GenerationUrl(13),
@@ -76,7 +76,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void LoginUser()
         {
-            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
+            var client = new PlatziFakeStoreClient(EnumExtension.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),

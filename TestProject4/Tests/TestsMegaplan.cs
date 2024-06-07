@@ -3,12 +3,11 @@ using AutotestAPI.Entities.Megaplan.Requests;
 using AutotestAPI.Framework;
 using AutotestAPI.Validators;
 using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
-using EnumHelper = AutotestAPI.Helpers.EnumHelper;
+using EnumExtension = AutotestAPI.Helpers.EnumExtension;
 using static AutotestAPI.Enums.DomenEnum;
 using static AutotestAPI.Enums.ContentTypeEnum;
 using static AutotestAPI.Enums.EmployeeEnum;
 using static AutotestAPI.Enums.ContractHumanEnum;
-using Newtonsoft.Json;
 
 namespace AutotestAPI.Tests
 {
@@ -25,21 +24,21 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createTaskRequest = new TaskCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false,
                 IsUrgent = false
             };
             //act
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateTask = client.CreateTask(createTaskRequest);
             var OpenTask = client.OpenTaskId(respCreateTask.Data.Data.Id);
@@ -59,24 +58,25 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createProjRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false
             };
 
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
-            client.AuthEmployee(createUserRequest); 
-            var file = client.AddFile();
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
+            client.AuthEmployee(createUserRequest);
+            var doc = GenerationFile.CreateDocumentPDF();
+            var file = client.AddFile(doc);
+            GenerationFile.DeleteDocumentPDF(doc);
             var respProj = client.CreateProject(createProjRequest);
-            //Есть ли смысл создать отдельный файл в котором будут методы в которых будет весь этот код по созданию
             var createProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
@@ -84,7 +84,7 @@ namespace AutotestAPI.Tests
                 {
                     new Category165CustomFieldFaylRequest
                     {
-                        ContentType = EnumHelper.GetDescription(FileType),
+                        ContentType = EnumExtension.GetDescription(FileType),
                         Id = file.Data.Data[0].Id
                     }
                 },
@@ -93,37 +93,37 @@ namespace AutotestAPI.Tests
                 Category165CustomFieldDaNet = true,
                 Category165CustomFieldDataIVremya = new Category165CustomFieldDataIVremyaRequest
                 {
-                    ContentType = EnumHelper.GetDescription(DateTimeType),
+                    ContentType = EnumExtension.GetDescription(DateTimeType),
                     Value = DateTime.Now
                 },
                 Category165CustomFieldPlanFakt = new Category165CustomFieldPlanFaktRequest
                 {
-                    ContentType = EnumHelper.GetDescription(ResourceValue),
+                    ContentType = EnumExtension.GetDescription(ResourceValue),
                     Planned = GenerationData.GenerationInt(2)
                 },
                 Category165CustomFieldSotrudnikKlient = new Category165CustomFieldSotrudnikKlientRequest
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeTest)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeTest)
                 },
                 Category165CustomFieldViborIzSpiska = "1",//Вынести в Enum
                 Auditors = new List<AuditorRequest>
                 {
                     new AuditorRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeTest)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeTest)
                     }
                 },
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Contractor = new ContractorRequest
                 {
-                    ContentType = EnumHelper.GetDescription(ContractorHuman),
-                    Id = EnumHelper.GetDescription(Human)
+                    ContentType = EnumExtension.GetDescription(ContractorHuman),
+                    Id = EnumExtension.GetDescription(Human)
                 },
                 Deadline = new DeadlineRequest
                 {
-                    ContentType = EnumHelper.GetDescription(DateOnlyType),
+                    ContentType = EnumExtension.GetDescription(DateOnlyType),
                     Day = DateTime.Now.Day.CompareTo(2),
                     Month = DateTime.Now.Month.CompareTo(1),
                     Year = DateTime.Now.Year,
@@ -132,27 +132,27 @@ namespace AutotestAPI.Tests
                 {
                     new ExecutorRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeTest)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeTest)
                     }
                 },
                 KpiStart = GenerationData.GenerationInt(1),
                 KpiUnit = GenerationData.GenerationString(3),
                 Owner = new OwnerRequest 
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeDirector)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector)
                 },
                 Statement = GenerationData.GenerationString(12),
                 Parent = new ParentRequest 
                 {
                     Id = respProj.Data.Data.Id,
-                    ContentType = EnumHelper.GetDescription(Project)
+                    ContentType = EnumExtension.GetDescription(Project)
                 },
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee)
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
@@ -174,26 +174,26 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Owner = new OwnerRequest
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeDirector)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector)
                 },
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee)
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
 
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateProjec = client.CreateProject(createProjectRequest);
             var createComent = new CreateCommentRequest
@@ -202,34 +202,34 @@ namespace AutotestAPI.Tests
                 {
                     Completed = 0,
                     Content = GenerationData.GenerationString(12),
-                    ContentType = EnumHelper.GetDescription(Comment),
+                    ContentType = EnumExtension.GetDescription(Comment),
                     Owner = new OwnerRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeDirector)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeDirector)
                     },
                     Subject = new SubjectRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Project),
+                        ContentType = EnumExtension.GetDescription(Project),
                         Id = respCreateProjec.Data.Data.Id
                     },
                     TimeCreated = new TimeCreatedRequest
                     {
-                        ContentType = EnumHelper.GetDescription(DateTimeType),
+                        ContentType = EnumExtension.GetDescription(DateTimeType),
                         Value = DateTime.Now
                     },
                     WorkDate = new WorkDateRequest
                     {
-                        ContentType = EnumHelper.GetDescription(DateTimeType),
+                        ContentType = EnumExtension.GetDescription(DateTimeType),
                         Value = DateTime.Now
                     },
                     WorkTime = new WorkTimeRequest
                     {
-                        ContentType = EnumHelper.GetDescription(DateInterval),
+                        ContentType = EnumExtension.GetDescription(DateInterval),
                         Value = GenerationData.GenerationInt(5)
                     }
                 },
-                ContentType = EnumHelper.GetDescription(CommentCreate),
+                ContentType = EnumExtension.GetDescription(CommentCreate),
                 Transports = { }
             };
             var comment = client.AddComment(respCreateProjec.Data.Data.Id, "project", createComent);
@@ -250,59 +250,59 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Owner = new OwnerRequest
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeDirector)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector)
                 },
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee)
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
             var createTwoProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Owner = new OwnerRequest
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeDirector)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector)
                 },
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee)
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
 
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateProjec = client.CreateProject(createProjectRequest);
             var respCreateTwoProjec = client.CreateProject(createTwoProjectRequest);
 
             var massDelete = new MassDeleteRequest
             {
-                ContentType = EnumHelper.GetDescription(MassActionDelete),
+                ContentType = EnumExtension.GetDescription(MassActionDelete),
                 Entities = new List<EntityDeleteRequest>
                 {
                     new EntityDeleteRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Project),
+                        ContentType = EnumExtension.GetDescription(Project),
                         Id = respCreateProjec.Data.Data.Id
                     },
                     new EntityDeleteRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Project),
+                        ContentType = EnumExtension.GetDescription(Project),
                         Id = respCreateTwoProjec.Data.Data.Id
                     }
                 },
@@ -326,32 +326,32 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createProjectRequest = new ProjectCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Owner = new OwnerRequest
                 {
-                    ContentType = EnumHelper.GetDescription(Employee),
-                    Id = EnumHelper.GetDescription(EmployeeDirector)
+                    ContentType = EnumExtension.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector)
                 },
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee)
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee)
                 },
                 IsTemplate = false,
             };
 
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateProjec = client.CreateProject(createProjectRequest);
 
             var renameProject = new ProjectCreateRequest
             {
-                ContentType = EnumHelper.GetDescription(Project),
+                ContentType = EnumExtension.GetDescription(Project),
                 Id = respCreateProjec.Data.Data.Id,
                 Name = GenerationData.GenerationString(10),
             };
@@ -371,49 +371,49 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createTaskRequest = new TaskCreateRequest
             {
-                ContentType = EnumHelper.GetDescription(TaskType),
+                ContentType = EnumExtension.GetDescription(TaskType),
                 Name = GenerationData.GenerationString(10),
                 Executors = new List<ExecutorRequest>
                 {
                     new ExecutorRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeTest)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeTest)
                     },
                     new ExecutorRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeProstoy)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeProstoy)
                     },
                     new ExecutorRequest
                     {
-                        ContentType = EnumHelper.GetDescription(Employee),
-                        Id = EnumHelper.GetDescription(EmployeeDirector)
+                        ContentType = EnumExtension.GetDescription(Employee),
+                        Id = EnumExtension.GetDescription(EmployeeDirector)
                     },
                 },
                 IsGroup = true,
                 Statement = GenerationData.GenerationString(12),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false,
                 IsUrgent = false
             };
 
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var createTask = client.CreateTask(createTaskRequest);
             AssertionHelper.ChecksStatus(createTask);
 
             var updateTask = new TaskCreateRequest
             {
-                ContentType = EnumHelper.GetDescription(TaskType),
+                ContentType = EnumExtension.GetDescription(TaskType),
                 Attaches = [],
                 Statement = GenerationData.GenerationString(12),
                 Id = createTask.Data.Data.Id
@@ -435,15 +435,15 @@ namespace AutotestAPI.Tests
             {
                 Username = "grisha.manuk1",
                 Password = "grisha.manuk1",
-                GrantType = EnumHelper.GetDescription(Password)
+                GrantType = EnumExtension.GetDescription(Password)
             };
             var createParentTaskRequest = new TaskCreateRequest
             {
                 Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false,
                 IsUrgent = false
@@ -453,14 +453,14 @@ namespace AutotestAPI.Tests
                 Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false,
                 IsUrgent = false
             };
             //act
-            var client = new MegaplanClient(EnumHelper.GetDescription(Megaplan));
+            var client = new MegaplanClient(EnumExtension.GetDescription(Megaplan));
             client.AuthEmployee(createUserRequest);
             var respCreateParentTask = client.CreateTask(createParentTaskRequest);
             var respCreateParentTwoTask = client.CreateTask(createParentTwoTaskRequest);
@@ -470,14 +470,14 @@ namespace AutotestAPI.Tests
                 Name = GenerationData.GenerationString(10),
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 IsTemplate = false,
                 IsUrgent = false,
                 Parent = new ParentRequest
                 {
-                    ContentType = EnumHelper.GetDescription(TaskType),
+                    ContentType = EnumExtension.GetDescription(TaskType),
                     Id = respCreateParentTask.Data.Data.Id,
                 }
             };
@@ -488,16 +488,16 @@ namespace AutotestAPI.Tests
 
             var updateParentTask = new TaskCreateRequest
             {
-                ContentType = EnumHelper.GetDescription(TaskType),
+                ContentType = EnumExtension.GetDescription(TaskType),
                 Id = respCreateTask.Data.Data.Id,
                 Responsible = new ResponsibleRequest
                 {
-                    Id = EnumHelper.GetDescription(EmployeeDirector),
-                    ContentType = EnumHelper.GetDescription(Employee),
+                    Id = EnumExtension.GetDescription(EmployeeDirector),
+                    ContentType = EnumExtension.GetDescription(Employee),
                 },
                 Parent = new ParentRequest
                 {
-                    ContentType = EnumHelper.GetDescription(TaskType),
+                    ContentType = EnumExtension.GetDescription(TaskType),
                     Id = respCreateParentTwoTask.Data.Data.Id,
                 }
             };

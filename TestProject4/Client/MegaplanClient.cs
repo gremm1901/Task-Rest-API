@@ -1,8 +1,6 @@
-﻿using AutotestAPI.Entities.Megaplan.Requests;
+﻿using Aspose.Pdf;
+using AutotestAPI.Entities.Megaplan.Requests;
 using AutotestAPI.Entities.Megaplan.Responses;
-using System.IO;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AutotestAPI.Client
 {
@@ -69,10 +67,11 @@ namespace AutotestAPI.Client
         /// Загрузить файл
         /// </summary>
         /// <returns></returns>
-        public RestResponse<FileBaseResponse> AddFile()
+        public RestResponse<FileBaseResponse> AddFile(Document doc)
         {
             var req = new RestRequest($"api/file", Method.Post);
-            req.AddFile("files[]", File.ReadAllBytes(@"C:\Users\grish\Downloads\123.jpeg"), Path.GetFileName(@"C:\Users\grish\Downloads\123.jpeg"), "multipart/form-data");
+            Console.WriteLine(doc);
+            req.AddFile("files[]", File.ReadAllBytes(@"./document.pdf"), Path.GetFileName(@"./document.pdf"), "multipart/form-data");
             return _client.Execute<FileBaseResponse>(req);
         }
         /// <summary>
@@ -92,7 +91,6 @@ namespace AutotestAPI.Client
         /// Массовое удаление задач
         /// </summary>
         /// <param name="body">Список задач на удаление</param>
-        /// <returns></returns>
         public RestResponse<MassDeleteResponse> MassDelete(MassDeleteRequest body)
         {
             var req = new RestRequest($"api/v3/massActionDelete", Method.Post);
