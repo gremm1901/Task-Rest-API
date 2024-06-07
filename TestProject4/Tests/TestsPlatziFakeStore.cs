@@ -1,7 +1,11 @@
 ﻿using AutotestAPI.Client;
 using AutotestAPI.Entities.PlatziFakeStore.Requests;
 using AutotestAPI.Framework;
-using static AutotestAPI.Framework.EnumAssertion;
+using AutotestAPI.Validators;
+using static AutotestAPI.Enums.RoleEnum;
+using AssertionHelper = AutotestAPI.Helpers.AssertionHelper;
+using EnumHelper = AutotestAPI.Helpers.EnumHelper;
+using static AutotestAPI.Enums.DomenEnum;
 
 namespace AutotestAPI.Tests
 {
@@ -14,21 +18,21 @@ namespace AutotestAPI.Tests
         [Test]
         public void TestDeleteUser()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
                 Email = GenerationData.GenerationEmail(),
                 Name = GenerationData.GenerationString(13),
                 Password = GenerationData.GenerationString(13),
-                Role = Role.admin.ToString(),
+                Role = EnumHelper.GetDescription(Admin),
             };
             var resp = client.CreateUsers(createUserRequest);
             var respUserId = client.GetUsersId(resp.Data.Id);
             Validators.PlatziFakeStoreValidator.CheckParametrUser(resp.Data, respUserId.Data);
             client.DeleteUsersId(respUserId.Data.Id);
             var respDeleteId = client.GetUsersId(respUserId.Data.Id);
-            Framework.AssertionHelper.ChecksStatus(respDeleteId, 400);
+            AssertionHelper.ChecksStatus(respDeleteId, 400);
         }
         /// <summary>
         /// Тестовое задание 1, сценарий Второй 
@@ -37,7 +41,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void DeleteCategories()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createCategoriesRequest = new CreateCategoriesRequest
             {
                 Image = GenerationData.GenerationUrl(13),
@@ -50,15 +54,19 @@ namespace AutotestAPI.Tests
 
             var resp = client.CreateCategories(createCategoriesRequest);
             var respCategoriesId = client.GetCategoriesId(resp.Data.Id);
-            Framework.AssertionHelper.ChecksStatus(respCategoriesId);
+            AssertionHelper.ChecksStatus(respCategoriesId);
+
             var respPutCategory = client.PutCategoriesId(putCategoriesRequest, respCategoriesId.Data.Id);
-            Framework.AssertionHelper.ChecksStatus(respPutCategory);
+            AssertionHelper.ChecksStatus(respPutCategory);
+
             var respPutCategoriesId = client.GetCategoriesId(respPutCategory.Data.Id);
-            Validators.PlatziFakeStoreValidator.CheckCategorie(respPutCategory.Data, respPutCategoriesId.Data);
+            PlatziFakeStoreValidator.CheckCategorie(respPutCategory.Data, respPutCategoriesId.Data);
+
             var respDeleteCategorie = client.DeleteCategoriesId(respCategoriesId.Data.Id);
-            Framework.AssertionHelper.ChecksStatus(respDeleteCategorie);
+            AssertionHelper.ChecksStatus(respDeleteCategorie);
+
             var respDeleteCategoriesId = client.GetCategoriesId(respPutCategory.Data.Id);
-            Framework.AssertionHelper.ChecksStatus(respDeleteCategoriesId, 400);
+            AssertionHelper.ChecksStatus(respDeleteCategoriesId, 400);
 
         }
         /// <summary>
@@ -68,7 +76,7 @@ namespace AutotestAPI.Tests
         [Test]
         public void LoginUser()
         {
-            var client = new PlatziFakeStoreClient("https://api.escuelajs.co");
+            var client = new PlatziFakeStoreClient(EnumHelper.GetDescription(PlatziFakeStore));
             var createUserRequest = new CreateUserRequest
             {
                 Avatar = GenerationData.GenerationUrl(13),
@@ -86,8 +94,8 @@ namespace AutotestAPI.Tests
             });
 
             var userResp = client.GetProfileUser(loginResp.Data.AccessToken);
-            Framework.AssertionHelper.ChecksStatus(userResp);
-            Validators.PlatziFakeStoreValidator.CheckParametrUser(resp.Data, userResp.Data);
+            AssertionHelper.ChecksStatus(userResp);
+            PlatziFakeStoreValidator.CheckParametrUser(resp.Data, userResp.Data);
         }
     }
 }

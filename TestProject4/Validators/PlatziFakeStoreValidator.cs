@@ -12,7 +12,7 @@ namespace AutotestAPI.Validators
         /// <param name="client">С чем сравнивать</param>
         public static void CheckParametrUser(UserResponse response, UserResponse client)
         {
-            response.Should().BeEquivalentTo<UserResponse>(client);
+            response.Should().BeEquivalentTo(client);
         }
         /// <summary>
         /// Проверяет данные категории
@@ -21,7 +21,7 @@ namespace AutotestAPI.Validators
         /// <param name="client">С чем сравнивать</param>
         public static void CheckCategorie(CategoriesResponse response, CategoriesResponse client)
         {
-            response.Should().BeEquivalentTo<CategoriesResponse>(client);
+            response.Should().BeEquivalentTo(client);
         }
     }
 }

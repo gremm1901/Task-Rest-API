@@ -35,7 +35,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public object Deadline { get; set; }
 
         [JsonPropertyName("subTasks")]
-        public List<object> SubTasks { get; set; }
+        public List<SubTasksResponse> SubTasks { get; set; }
 
         [JsonPropertyName("subTasksCount")]
         public int SubTasksCount { get; set; }
@@ -158,7 +158,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int LinksCount { get; set; }
 
         [JsonPropertyName("parent")]
-        public object Parent { get; set; }
+        public ParentResponse Parent { get; set; }
 
         [JsonPropertyName("workedOffTime")]
         public List<object> WorkedOffTime { get; set; }
@@ -266,7 +266,7 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         public int ShouldVisasCount { get; set; }
 
         [JsonPropertyName("comments")]
-        public List<object> Comments { get; set; }
+        public List<ComentResponse> Comments { get; set; }
 
         [JsonPropertyName("commentsCount")]
         public int CommentsCount { get; set; }
@@ -409,4 +409,5 @@ namespace AutotestAPI.Entities.Megaplan.Responses
         [JsonPropertyName("calculatedFieldsCount")]
         public int CalculatedFieldsCount { get; set; }
     }
+
 }
